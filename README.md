@@ -14,5 +14,5 @@ Create a Java program which does the following:
 
 Bonus Opportunities:
 
-+2 Make sure the user’s choice is valid (test for letters, punctuation, etc.)
-+2 Print a mini-menu when the user chooses Delete or Change which shows a numbered list of the employee names, allowing the user to select a number rather than typing a name.
+- +2 Make sure the user’s choice is valid (test for letters, punctuation, etc.)
+- +2 Print a mini-menu when the user chooses Delete or Change which shows a numbered list of the employee names, allowing the user to select a number rather than typing a name.
