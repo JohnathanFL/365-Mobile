@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Exploring Layouts</string>
+    <string name="txtMenu">Menu</string>
+    <string name="btnLoad">Load</string>
+    <string name="txtBackToMain">"Back to Main Menu"</string>
+    <string name="txtConstraintLayout">"Load Constraint Layout"</string>
+    <string name="txtTableLayout">"Load Table Layout"</string>
+    <string name="mlTxtDirections">"Select a layout type to view an example.
+        A method will be called when an option is clicked on the menu"</string>
+
+    <string name="txtFName">"First Name"</string>
+    <string name="txtLName">"Last Name"</string>
+    <string name="txtMajor">"Major"</string>
+
+    <string name="p1FName">Joe</string>
+    <string name="p1LName">Johnson</string>
+    <string name="p1Major">Chemistry</string>
+
+    <string name="p2FName">Sally</string>
+    <string name="p2LName">Smith</string>
+    <string name="P2Major">Mathematics</string>
+</resources>
