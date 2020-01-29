@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lab4</string>
+    <string name="greet_me">Greet Me</string>
+</resources>
