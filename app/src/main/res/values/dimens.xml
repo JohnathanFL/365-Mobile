@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="headerSize">30sp</dimen>
+    <dimen name="tableLRMargin">20dp</dimen>
+    <dimen name="tableBotMargin">10dp</dimen>
+    <dimen name="promptSize">20sp</dimen>
+</resources>
