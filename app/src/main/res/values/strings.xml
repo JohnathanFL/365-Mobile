@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Assign4</string>
+    <string name="sucess">SUCCESS</string>
+    <string name="loginBanner">MSUM Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="loginBtn">Login</string>
+</resources>
