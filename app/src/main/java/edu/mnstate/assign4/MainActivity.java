@@ -44,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.println(Log.DEBUG, "loginBtn.onClick", "user: " + usernameField.getText() + " | pass: " + passwordField.getText());
-                if(usernameField.getText().toString().equals("GUEST") && passwordField.getText().toString().equals("PASS")) {
+                if(usernameField.getText().toString().equals(getString(R.string.realUsername)) && passwordField.getText().toString().equals(getString(R.string.realPass))) {
                     Toast.makeText(getApplicationContext(), R.string.sucess, Toast.LENGTH_LONG).show();
                     Log.println(Log.DEBUG, "loginBtn.onClick", "Authenticated!");
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.unsuccessful, Toast.LENGTH_LONG).show();
                 }
             }
         });
