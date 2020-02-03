@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class PhotoActivity extends AppCompatActivity {
     private static final String TAG = "Lab678-PhotoActivity";
@@ -19,5 +20,8 @@ public class PhotoActivity extends AppCompatActivity {
         findViewById(R.id.backBtn).setOnClickListener(v ->
                 startActivity(new Intent(getBaseContext(), MainActivity.class)));
 
+        TextView name = findViewById(R.id.myName);
+
+        name.setText(getIntent().getStringExtra("personName"));
     }
 }

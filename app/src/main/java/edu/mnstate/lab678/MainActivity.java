@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Lab678-MainActivity";
@@ -18,7 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Started App");
 
-        findViewById(R.id.btnShowPhoto).setOnClickListener(v ->
-                startActivity(new Intent(getBaseContext(), PhotoActivity.class)));
+        findViewById(R.id.btnShowPhoto).setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), PhotoActivity.class);
+            intent.putExtra("personName", ((TextView)findViewById(R.id.personName)).getText().toString());
+            startActivity(intent);
+        });
+
+
     }
 }
