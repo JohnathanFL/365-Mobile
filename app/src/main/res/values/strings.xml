@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Lab5</string>
+    
+    <string-array name="empNames">
+        <item>Joe</item>
+        <item>Mary</item>
+        <item>Bill</item>
+        <item>James</item>
+        <item>Ann</item>
+        <item>Sue</item>
+        <item>David</item>
+    </string-array>
+</resources>
