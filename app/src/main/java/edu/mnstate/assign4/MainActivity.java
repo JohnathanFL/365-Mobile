@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         LangAdapter adapter = new LangAdapter();
         // Since the adapter can't see resources on its own
         // Must be /3 because it's in groups of 3
-        adapter.setup(getResources().getIntArray(R.array.langs).length / 3);
+        adapter.setup(getResources().getIntArray(R.array.langs).length / 3, this);
 
         list.setAdapter(adapter);
     }

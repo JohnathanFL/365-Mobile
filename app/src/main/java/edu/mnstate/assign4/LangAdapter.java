@@ -1,6 +1,7 @@
 package edu.mnstate.assign4;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.List;
 
 class RowView extends FrameLayout {
     private static final String TAG = "RowView";
+
     ImageView img;
     TextView name, desc;
 
@@ -32,7 +34,8 @@ class RowView extends FrameLayout {
     }
 
     // Even in Java I can't escape the realities of pointer arithmetic
-    public void setup(int id) {
+    public void setup(int id, MainActivity us) {
+
         TypedArray ids = getResources().obtainTypedArray(R.array.langs);
         Log.d(TAG, "setup");
         // ids is packed as groups of 3 integer ids. Thus we need to mul by 3 to get the start
@@ -47,6 +50,12 @@ class RowView extends FrameLayout {
         img.setImageDrawable(ids.getDrawable(id + 0));
         name.setText(ids.getString(id + 1));
         desc.setText(ids.getString(id + 2));
+
+        setOnClickListener(v -> {
+            Intent mover = new Intent(us.getBaseContext(), LangDisplay.class);
+
+            us.startActivity(mover);
+        });
     }
 }
 
@@ -54,6 +63,7 @@ class RowView extends FrameLayout {
 public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
     // Only needed because LangAdapter can't use getResources directly... for some reason....
     int size;
+    MainActivity us;
 
 
     @NonNull
@@ -64,7 +74,7 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.row.setup(position);
+        holder.row.setup(position, this.us);
     }
 
     @Override
@@ -72,8 +82,9 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
         return size;
     }
 
-    void setup(int size) {
+    void setup(int size, MainActivity us) {
         this.size = size;
+        this.us = us;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -9,16 +9,23 @@
 
         <item>@android:drawable/alert_dark_frame</item>
         <item>Rust</item>
-        <item>An attempt at making a better C. Instead of inheritance, Rust prefers traits.</item>
+        <item>
+            An attempt at making a better C. Instead of inheritance, Rust prefers traits.
+        </item>
 
         <item>@android:drawable/alert_dark_frame</item>
         <item>Zig</item>
-        <item>Another attempt at a better C. Zig goes for a purist C approach, only adding\n
-        on a proper @import system and metaprogramming capabilities.</item>
+        <item>
+            Another attempt at a better C. Zig goes for a purist C approach, only adding\n
+            on a proper @import system and metaprogramming capabilities.
+        </item>
 
         <item>@android:drawable/alert_dark_frame</item>
         <item>Zag</item>
-        <item>Yet another attempt at a better C. Zag attempts to take Zig\'s formula and "Zag" off\n
-        in another direction. Zag adds a simpler syntax and better macro/metaprogramming features. </item>
+        <item>
+            Yet another attempt at a better C. Zag attempts to take Zig\'s formula and "Zag" off\n
+            in another direction. Zag adds a simpler syntax and better macro/metaprogramming
+            features.
+        </item>
     </array>
 </resources>
