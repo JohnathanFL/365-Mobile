@@ -3,4 +3,5 @@
     <dimen name="langImgTopPad">25dp</dimen>
     <dimen name="langImgSize">200dp</dimen>
     <dimen name="listPad">20dp</dimen>
+    <dimen name="listTextPadding">5sp</dimen>
 </resources>

@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="Simple program which displays a list of languages, each with an image, name, and description.&#10; Each list item may be clicked to go to a page devoted to that language.&#10; &#10; Author: Johnathan Lee&#10; Due: 02/07/2020&#10; " />
+    <option name="myName" value="Assign4Header" />
+  </copyright>
+</component>

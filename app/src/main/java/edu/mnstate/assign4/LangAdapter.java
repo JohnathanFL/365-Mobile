@@ -1,3 +1,12 @@
+/*
+ * Simple program which displays a list of languages, each with an image, name, and description.
+ *  Each list item may be clicked to go to a page devoted to that language.
+ *
+ *  Author: Johnathan Lee
+ *  Due: 02/07/2020
+ *
+ */
+
 package edu.mnstate.assign4;
 
 import android.content.Context;
@@ -19,13 +28,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * Each row itself
+ */
 class RowView extends FrameLayout {
     private static final String TAG = "RowView";
 
+    /// The logo of that lang
     ImageView img;
-    TextView name, desc;
+    TextView
+            /// The name of the lang
+            name,
+            /// The description of the lang
+            desc;
 
+    /**
+     * Setup the handles to all layout elements
+     * @param context Android stuff
+     */
     public RowView(@NonNull Context context) {
         super(context);
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -35,9 +55,13 @@ class RowView extends FrameLayout {
         desc = findViewById(R.id.langDesc);
     }
 
-    // Even in Java I can't escape the realities of pointer arithmetic
-    public void setup(int id, MainActivity us) {
 
+    /**
+     * Set text/images for the current position.
+     * @param id The position of the current element in the entire list
+     * @param us The activity we're in. Needed for getting context and resources
+     */
+    public void setup(int id, MainActivity us) {
         TypedArray ids = getResources().obtainTypedArray(R.array.langs);
         Log.d(TAG, "setup");
         // ids is packed as groups of 3 integer ids. Thus we need to mul by 3 to get the start
@@ -68,34 +92,61 @@ class RowView extends FrameLayout {
     }
 }
 
-
+/**
+ * Recycler adapter for a typed array of groups of (img, name, desc).
+ * Gets its data from R.arrays.langs.
+ */
 public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder> {
-    // Only needed because LangAdapter can't use getResources directly... for some reason....
+    /// The number of elements in R.arrays.langs
+    /// Only needed because LangAdapter can't use getResources directly... for some reason....
     int size;
+    /// Needed to pass on to the RowView
     MainActivity us;
 
 
+    /**
+     * Glorified ViewHolder constructor.
+     * @param parent Android stuff
+     * @param viewType Mooooore android stuff
+     * @return A new ViewHolder. That's it.
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(new RowView(parent.getContext()));
     }
 
+    /**
+     * Setup a new row
+     * @param holder The holder.... for the view...
+     * @param position The absolute position we're at in the list
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.row.setup(position, this.us);
     }
 
+    /**
+     * @return length of R.arrays.langs / 3
+     */
     @Override
     public int getItemCount() {
         return size;
     }
 
+    /**
+     * Essentially a secondary constructor since we can't directly pass things in the other one.
+     * @param size R.arrays.langs / 3
+     * @param us The main activity
+     */
     void setup(int size, MainActivity us) {
         this.size = size;
         this.us = us;
     }
 
+    /**
+     * Holds each row
+     */
     class ViewHolder extends RecyclerView.ViewHolder {
         RowView row;
         ViewHolder(@NonNull RowView itemView) {

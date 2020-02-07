@@ -1,3 +1,12 @@
+/*
+ * Simple program which displays a list of languages, each with an image, name, and description.
+ *  Each list item may be clicked to go to a page devoted to that language.
+ *
+ *  Author: Johnathan Lee
+ *  Due: 02/07/2020
+ *
+ */
+
 package edu.mnstate.assign4;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+/**
+ * Displays the list of langauges
+ */
 public class MainActivity extends AppCompatActivity {
     RecyclerView list;
     @Override

@@ -29,8 +29,11 @@
         <TextView
             android:id="@+id/langName"
             style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/headerTextColor"
+            android:paddingLeft="@dimen/listTextPadding"
             android:text="@string/to_be_filled_title"
             app:fontFamily="@string/langFont" />
 
@@ -38,8 +41,9 @@
             android:id="@+id/langDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
+            android:textStyle="italic"
             android:text="@string/to_be_filled_desc"
+            android:paddingLeft="@dimen/listTextPadding"
             app:fontFamily="monospace" />
     </LinearLayout>
 

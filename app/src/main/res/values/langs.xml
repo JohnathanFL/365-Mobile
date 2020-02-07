@@ -15,14 +15,14 @@
         <item>@drawable/zig_logo</item>
         <item>Zig</item>
         <item>
-            Another attempt at a better C. Zig goes for a purist C approach, only adding\n
+            Another attempt at a better C. Zig goes for a purist C approach, primarily adding
             on a proper @import system and metaprogramming capabilities.
         </item>
 
-        <item>@android:drawable/alert_dark_frame</item>
+        <item>@drawable/zag_logo</item>
         <item>Zag</item>
         <item>
-            Yet another attempt at a better C. Zag attempts to take Zig\'s formula and "Zag" off\n
+            Yet another attempt at a better C. Zag attempts to take Zig\'s formula and "Zag" off
             in another direction. Zag adds a simpler syntax and better macro/metaprogramming
             features.
         </item>
