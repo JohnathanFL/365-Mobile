@@ -2,18 +2,17 @@
 <resources>
     <!-- Groups of 3: imgID, nameID, descID -->
     <array name="langs">
-        <item>@android:drawable/alert_dark_frame</item>
+        <item>@drawable/cpp_logo</item>
         <item>C++</item>
-        <item>A superset of C that adds a full new language - templates. These can create\n
-        completely new types based on another input type.</item>
+        <item>A superset of C that adds a full new language - templates. These can create completely new types based on another input type.</item>
 
-        <item>@android:drawable/alert_dark_frame</item>
+        <item>@drawable/rust_logo</item>
         <item>Rust</item>
         <item>
             An attempt at making a better C. Instead of inheritance, Rust prefers traits.
         </item>
 
-        <item>@android:drawable/alert_dark_frame</item>
+        <item>@drawable/zig_logo</item>
         <item>Zig</item>
         <item>
             Another attempt at a better C. Zig goes for a purist C approach, only adding\n

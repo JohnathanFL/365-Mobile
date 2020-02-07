@@ -3,6 +3,7 @@ package edu.mnstate.assign4;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 class RowView extends FrameLayout {
@@ -44,16 +46,23 @@ class RowView extends FrameLayout {
         // something working.
         id *= 3;
 
-        Log.d(TAG, "setup: Desc was " + ids.getString(id + 2));
+        Drawable img = ids.getDrawable(id + 0);
+        String name = ids.getString(id + 1);
+        String desc = ids.getString(id + 2);
 
 
-        img.setImageDrawable(ids.getDrawable(id + 0));
-        name.setText(ids.getString(id + 1));
-        desc.setText(ids.getString(id + 2));
+        this.img.setImageDrawable(img);
+        this.name.setText(name);
+        this.desc.setText(desc);
 
-        setOnClickListener(v -> {
+        // Because java's real stupid about passing things into lambdas
+        Integer passableId = id;
+        setOnClickListener( v -> {
+            Log.d(TAG, "setup: clicked " + this.toString());
             Intent mover = new Intent(us.getBaseContext(), LangDisplay.class);
-
+            mover.putExtra("image", passableId + 0);
+            mover.putExtra("name", passableId + 1);
+            mover.putExtra("desc", passableId + 2);
             us.startActivity(mover);
         });
     }

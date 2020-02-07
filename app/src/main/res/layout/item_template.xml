@@ -3,14 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:clickable="false"
+    android:orientation="horizontal"
+    android:id="@+id/root"
+    android:background="?android:attr/selectableItemBackground">
+    <!--
+        The selectableItemBackground learned from
+        https://stackoverflow.com/questions/26963365/how-to-create-a-click-animation-for-items-in-a-recycleview
+    -->
 
     <ImageView
         android:id="@+id/langImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/langImgSize"
+        android:layout_height="@dimen/langImgSize"
         android:layout_weight="0.20"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher"
+        android:paddingRight="@dimen/listPad"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +31,8 @@
             style="@style/Base.TextAppearance.AppCompat.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/to_be_filled_title" />
+            android:text="@string/to_be_filled_title"
+            app:fontFamily="@string/langFont" />
 
         <TextView
             android:id="@+id/langDesc"
@@ -31,7 +40,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:text="@string/to_be_filled_desc"
-            />
+            app:fontFamily="monospace" />
     </LinearLayout>
 
 </LinearLayout>
