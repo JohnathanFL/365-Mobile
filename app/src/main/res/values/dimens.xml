@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="colWidth">100dp</dimen>
+    <dimen name="vertSpacing">24dp</dimen>
+    <dimen name="horSpacing">10dp</dimen>
+    <dimen name="artWidth">50dp</dimen>
+    <dimen name="artHeight">100dp</dimen>
+    <dimen name="favWidth">24dp</dimen>
+    <dimen name="favHeight">24dp</dimen>
+    <dimen name="textSize">12sp</dimen>
+    <dimen name="titlePadding">8dp</dimen>
+    <dimen name="padTop">4dp</dimen>
+</resources>

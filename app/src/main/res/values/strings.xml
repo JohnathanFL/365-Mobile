@@ -18,4 +18,6 @@
 
     <string name="python_name">Snakey Python</string>
     <string name="python_author">Sneaky Snakey</string>
+    <string name="placeholderAuthor">Dr. Seuss</string>
+    <string name="placeholderTitle">Are You My Mother</string>
 </resources>
