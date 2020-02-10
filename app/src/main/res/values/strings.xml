@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Lab 9</string>
+    
+    <string name="c_name">Effective C</string>
+    <string name="c_author">Kernigan and Ritchie</string>
+
+    <string name="cpp_name">C++ Language</string>
+    <string name="cpp_author">Bjorn Stroustrup</string>
+
+    <string name="js_name">Javscript</string>
+    <string name="js_author">The Big Man Down Below</string>
+
+    <string name="rust_name">Rust Second Edition</string>
+    <string name="rust_author">Mozilla</string>
+
+    <string name="d_name">Writing D</string>
+    <string name="d_author">Danny Dimmsdale</string>
+
+    <string name="python_name">Snakey Python</string>
+    <string name="python_author">Sneaky Snakey</string>
+</resources>
