@@ -1,10 +1,14 @@
 package edu.mnstate.majorproject1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+/**
+ * View a calendar
+ */
+public class CalendarActivity extends AppCompatActivity {
+    int curYear, curMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
