@@ -11,7 +11,7 @@ public class TodoTask {
     // Never intended to be seen and thus not a resource
     // Only here to tell me if something was left uninitialized
     String name = "@@FILLER_NAME@@";
-    String desc = "@@FILLER_DESC@@"
+    String desc = "@@FILLER_DESC@@";
 
     public TodoTask(@NonNull Calendar when, String name, String desc) {
         this.when = when;
