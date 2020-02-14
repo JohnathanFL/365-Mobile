@@ -6,24 +6,27 @@ import java.util.Calendar;
 
 public class TodoTask {
     boolean complete;
-    @NonNull
-    Calendar when;
+    int year, month, day;
     // Never intended to be seen and thus not a resource
     // Only here to tell me if something was left uninitialized
     String name = "@@FILLER_NAME@@";
     String desc = "@@FILLER_DESC@@";
 
-    public TodoTask(@NonNull Calendar when, String name, String desc) {
-        this.when = when;
+    public TodoTask(int year, int month, int day, String name, String desc) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
         this.name = name;
         this.desc = desc;
         this.complete = false;
     }
 
 
-    public TodoTask(@NonNull Calendar when, String name, String desc, boolean complete) {
+    public TodoTask(int year, int month, int day, String name, String desc, boolean complete) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
         this.complete = complete;
-        this.when = when;
         this.name = name;
         this.desc = desc;
     }

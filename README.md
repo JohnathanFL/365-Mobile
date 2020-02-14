@@ -29,6 +29,7 @@ Activities:
 
 Daily list of tasks displays
 - An imageview saying whether it's done or not (checkbox on/off)
+- An imageview of the assignee (android avatars)
 - The name of the task
 - The date the task is due
 
