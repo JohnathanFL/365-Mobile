@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -15,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class AddTaskActivity extends AppCompatActivity {
     EditText taskName, taskDesc;
-    Spinner taskAssignee;
     DatePicker taskDate;
 
     Button taskSubmit;
@@ -29,7 +29,6 @@ public class AddTaskActivity extends AppCompatActivity {
 
         taskName = findViewById(R.id.taskName);
         taskDesc = findViewById(R.id.taskDesc);
-        taskAssignee = findViewById(R.id.taskComplete);
         taskDate = findViewById(R.id.taskDate);
         taskSubmit = findViewById(R.id.taskSubmit);
 

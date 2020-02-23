@@ -1,8 +1,13 @@
 package edu.mnstate.majorproject1;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -68,8 +73,5 @@ public class TodoApp extends Application {
         // this.addTask(new TodoTask(2020, 1, 23, "MP1", "Do the major project"));
     }
 
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-    }
+
 }

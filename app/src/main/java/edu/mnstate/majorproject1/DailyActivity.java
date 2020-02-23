@@ -3,7 +3,9 @@ package edu.mnstate.majorproject1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -78,8 +80,8 @@ public class DailyActivity extends AppCompatActivity {
                 go.putExtra("taskID", this.tasks.get(position).id);
 
                 startActivity(go);
-
             });
+            // onDrag would be a drag+drop
         }
 
         @Override
