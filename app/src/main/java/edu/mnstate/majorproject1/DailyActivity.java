@@ -36,6 +36,8 @@ public class DailyActivity extends AppCompatActivity {
         int month = cause.getIntExtra("month", 0);
         int day = cause.getIntExtra("day", 0);
 
+        getSupportActionBar().setTitle(getResources().getString(R.string.tasksFor) + " " + year + "-" + month + "-" + day);
+
         Log.d(TAG, "onCreate: Got to Daily@" + year + '-' + month + '-' + day);
 
         TodoApp myApp = (TodoApp)getApplication();
@@ -45,8 +47,6 @@ public class DailyActivity extends AppCompatActivity {
         list.setAdapter(new TaskAdapter(tasks));
         list.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
     class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         ArrayList<TodoTask> tasks;
@@ -68,8 +68,18 @@ public class DailyActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.taskName.setText(this.tasks.get(position).name);
-            holder.taskDesc.setText(this.tasks.get(position).desc);
+            TodoTask task = this.tasks.get(position);
+            holder.taskName.setText(task.name);
+            holder.taskDesc.setText(task.desc);
+            holder.complete.setImageResource(task.complete ? android.R.drawable.star_big_on : android.R.drawable.star_big_off);
+
+            holder.holder.setOnClickListener(v -> {
+                Intent go = new Intent(holder.taskName.getContext(), TaskDetailActivity.class);
+                go.putExtra("taskID", this.tasks.get(position).id);
+
+                startActivity(go);
+
+            });
         }
 
         @Override
@@ -80,13 +90,15 @@ public class DailyActivity extends AppCompatActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView assignee;
+            View holder;
+            ImageView complete;
             TextView taskName;
             TextView taskDesc;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                this.assignee = itemView.findViewById(R.id.taskAssignee);
+                this.holder = itemView;
+                this.complete = itemView.findViewById(R.id.taskComplete);
                 this.taskName = itemView.findViewById(R.id.taskName);
                 this.taskDesc = itemView.findViewById(R.id.taskDesc);
             }

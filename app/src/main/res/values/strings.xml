@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MajorProject1</string>
+    <string name="tasksFor">Tasks For </string>
+    <string name="is_complete">Complete</string>
+    <string name="placeholder_name">PLACEHOLDER_NAME</string>
+    <string name="placeholder_desc">PLACEHOLDER_DESC</string>
 </resources>

@@ -5,12 +5,15 @@ import androidx.annotation.NonNull;
 import java.util.Calendar;
 
 public class TodoTask {
+    // The task's ID in the master array.
+    long id;
+    static long lastId = 0;
+
     boolean complete;
+    // Remember: In true, inscrutable java fashion, months are 0-indexed, but not days or years.
     int year, month, day;
-    // Never intended to be seen and thus not a resource
-    // Only here to tell me if something was left uninitialized
-    String name = "@@FILLER_NAME@@";
-    String desc = "@@FILLER_DESC@@";
+    String name;
+    String desc;
 
     public TodoTask(int year, int month, int day, String name, String desc) {
         this.year = year;
@@ -19,6 +22,8 @@ public class TodoTask {
         this.name = name;
         this.desc = desc;
         this.complete = false;
+
+        this.id = lastId++;
     }
 
 
@@ -29,5 +34,7 @@ public class TodoTask {
         this.complete = complete;
         this.name = name;
         this.desc = desc;
+
+        this.id = lastId++;
     }
 }

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.CalendarView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -26,6 +28,18 @@ public class CalendarActivity extends AppCompatActivity {
             moveToDaily.putExtra("month", month);
             moveToDaily.putExtra("day", day);
             startActivity(moveToDaily);
+        });
+
+        // Learned how to actually set the ActionBar's view itself from here
+        // https://www.tutorialspoint.com/how-to-create-custom-actionbar-in-android
+        // You'd think these two together would be redundant, but welcome to android, I guess?
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+
+        getSupportActionBar().setCustomView(R.layout.action_bar);
+        getSupportActionBar().getCustomView().findViewById(R.id.addTaskBtn).setOnClickListener(v -> {
+            Intent go = new Intent(this, AddTaskActivity.class);
+            startActivity(go);
         });
     }
 }

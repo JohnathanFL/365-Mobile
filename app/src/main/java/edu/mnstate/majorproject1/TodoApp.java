@@ -4,18 +4,21 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class TodoApp extends Application {
     private static final String TAG = "TodoApp";
-    
+
+    public HashMap<Long, TodoTask> allTasks = new HashMap<>();
     public HashMap<Long, ArrayList<TodoTask>> tasks = new HashMap<>();
 
 
     /**
      * Sugar for normal getDay where you can offload the Calendar creation to someone else.
+     * Never use this for adding a new task. Only for getting existing tasks.
      * @param year The year of the tasklist
      * @param month The month of the tasklist. NOTE THAT THIS IS ZERO-BASED. FEBRUARY IS 1, NOT 2
      *              ^ Guess who messed up for an hour straight?
@@ -43,11 +46,30 @@ public class TodoApp extends Application {
         }
     }
 
+    /**
+     * This should be used instead of getDay.add for adding tasks.
+     * @param task The new task to add.
+     * @return The Task's .id field
+     */
+    public long addTask(TodoTask task) {
+        this.allTasks.put(task.id, task);
+        this.getDay(task.year, task.month, task.day).add(task);
+        return task.id;
+    }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate");
-        this.getDay(2020, 2, 29).add(new TodoTask(2020, 2, 29, "MP1", "Do the major project"));
+        // Remember: months are 0-indexed, but days aren't.
+        // Go figure.
+        // This one's only for testing. Keep removed for production.
+        // this.addTask(new TodoTask(2020, 1, 23, "MP1", "Do the major project"));
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
     }
 }
