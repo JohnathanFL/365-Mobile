@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="10dp">
+    android:paddingLeft="@dimen/smallMargin"
+    android:paddingTop="@dimen/smallMargin"
+    android:paddingRight="@dimen/smallMargin"
+    android:paddingBottom="@dimen/smallMargin">
 
     <TextView
         android:id="@+id/taskDesc"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/match_constraint"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/taskComplete"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/taskName"
         style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/match_constraint"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,8 @@
         android:id="@+id/taskComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="@dimen/smallMargin"
+        android:layout_marginLeft="@dimen/smallMargin"
         app:layout_constraintEnd_toStartOf="@+id/taskName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

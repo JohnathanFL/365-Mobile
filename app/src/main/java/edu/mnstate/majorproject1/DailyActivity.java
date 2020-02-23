@@ -36,7 +36,7 @@ public class DailyActivity extends AppCompatActivity {
         int month = cause.getIntExtra("month", 0);
         int day = cause.getIntExtra("day", 0);
 
-        getSupportActionBar().setTitle(getResources().getString(R.string.tasksFor) + " " + year + "-" + month + "-" + day);
+        getSupportActionBar().setTitle(getResources().getString(R.string.tasksFor) + " " + year + "-" + (month + 1) + "-" + day);
 
         Log.d(TAG, "onCreate: Got to Daily@" + year + '-' + month + '-' + day);
 

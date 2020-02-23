@@ -4,4 +4,7 @@
     <string name="is_complete">Complete</string>
     <string name="placeholder_name">PLACEHOLDER_NAME</string>
     <string name="placeholder_desc">PLACEHOLDER_DESC</string>
+    <string name="nameHint">Name</string>
+    <string name="hintDesc">Description</string>
+    <string name="add_task">Add Task</string>
 </resources>
