@@ -1,3 +1,9 @@
+/**
+ * Major Project 1 - TODO App.
+ * Johnathan Lee
+ * Due 02/23/20
+ */
+
 package edu.mnstate.majorproject1;
 
 import android.content.Intent;
@@ -10,9 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+/**
+ * Show a calendar to pick a particular day.
+ */
 public class CalendarActivity extends AppCompatActivity {
     private static final String TAG = "CalendarActivity";
-    
+
+    // Learned about CalendarView vs DatePicker
     CalendarView cal;
 
     @Override
@@ -32,8 +42,8 @@ public class CalendarActivity extends AppCompatActivity {
 
         // Learned how to actually set the ActionBar's view itself from here
         // https://www.tutorialspoint.com/how-to-create-custom-actionbar-in-android
-        // You'd think these two together would be redundant, but welcome to android, I guess?
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        // Could've also used setDisplayOptions, but apparently that's for when you need more than just
+        // custom.
         getSupportActionBar().setDisplayShowCustomEnabled(true);
 
         getSupportActionBar().setCustomView(R.layout.action_bar);

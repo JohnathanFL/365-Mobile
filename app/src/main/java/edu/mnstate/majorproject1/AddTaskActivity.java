@@ -1,7 +1,13 @@
+/**
+ * Major Project 1 - TODO App.
+ * Johnathan Lee
+ * Due 02/23/20
+ */
 package edu.mnstate.majorproject1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -12,9 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Create a new activity, whether global or dated
+ * Create a new activity, then go to that day's view.
  */
 public class AddTaskActivity extends AppCompatActivity {
+    private static final String TAG = "AddTaskActivity";
     EditText taskName, taskDesc;
     DatePicker taskDate;
 
@@ -52,7 +59,9 @@ public class AddTaskActivity extends AppCompatActivity {
             go.putExtra("month", month);
             go.putExtra("day", day);
             startActivity(go);
+            finish();
         });
-
     }
+
+
 }

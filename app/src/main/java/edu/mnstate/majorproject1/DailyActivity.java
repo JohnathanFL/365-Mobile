@@ -1,3 +1,8 @@
+/**
+ * Major Project 1 - TODO App.
+ * Johnathan Lee
+ * Due 02/23/20
+ */
 package edu.mnstate.majorproject1;
 
 import android.content.Intent;
@@ -14,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +27,8 @@ import java.util.ArrayList;
 
 /**
  * View all tasks assigned to a certain day
+ *
+ * Must be intent'd with the year/month/day
  */
 public class DailyActivity extends AppCompatActivity {
     private static final String TAG = "DailyActivity";
@@ -78,9 +86,11 @@ public class DailyActivity extends AppCompatActivity {
             holder.holder.setOnClickListener(v -> {
                 Intent go = new Intent(holder.taskName.getContext(), TaskDetailActivity.class);
                 go.putExtra("taskID", this.tasks.get(position).id);
-
                 startActivity(go);
+                // Learned about finishing activities and the history stack
+                finish();
             });
+
             // onDrag would be a drag+drop
         }
 

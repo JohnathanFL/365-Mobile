@@ -1,3 +1,8 @@
+/**
+ * Major Project 1 - TODO App.
+ * Johnathan Lee
+ * Due 02/23/20
+ */
 package edu.mnstate.majorproject1;
 
 import android.app.Activity;
@@ -14,6 +19,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+/**
+ * Essentially a singleton for storing all tasks.
+ * I couldn't really justify trying to make individual singletons like Google suggests.
+ *
+ * Learned about subclassing Application in order to share data throughout the app.
+ */
 public class TodoApp extends Application {
     private static final String TAG = "TodoApp";
 

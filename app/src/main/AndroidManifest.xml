@@ -17,8 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DailyActivity" />
+
+        <activity android:name=".DailyActivity"/>
         <!-- noHistory trick learned from https://stackoverflow.com/questions/1898886/removing-an-activity-from-the-history-stack -->
+        <!-- Needed so we don't go back to the add task activity after we submit. -->
         <activity android:name=".AddTaskActivity" android:noHistory="true"/>
         <activity android:name=".TaskDetailActivity" />
     </application>
