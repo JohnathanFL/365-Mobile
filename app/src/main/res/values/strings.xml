@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab12</string>
+    <string name="without_bundle">Without Bundle</string>
+    <string name="with_bundle">With Bundle</string>
+</resources>
