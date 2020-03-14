@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
+import java.util.Calendar;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +56,11 @@ public class InputFragment extends Fragment {
         });
 
         this.payoffDate = view.findViewById(R.id.payoffDate);
+        Calendar date = Calendar.getInstance();
+        date.add(Calendar.MONTH, 1);
+        // Min of 1 month from now
+        this.payoffDate.setMinDate(date.getTimeInMillis());
+        this.payoffDate.setDate(date.getTimeInMillis());
         //if(this.payoffDate == null) return view;
         this.payoffDate.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             consumer.setDate(month, year);
@@ -65,7 +72,7 @@ public class InputFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // Since I have them set to go up by powers of 2 by each position....
                 Log.d(TAG, "onItemSelected: " + position);
-                consumer.setRAM(8 * (2 << position));
+                consumer.setRAM(8 * (1 << position));
             }
 
             @Override

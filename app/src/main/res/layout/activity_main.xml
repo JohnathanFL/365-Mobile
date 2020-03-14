@@ -9,20 +9,22 @@
     <fragment
         android:id="@+id/inputFrag"
         android:name="edu.mnstate.assign5.InputFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/match_constraint"
         app:layout_constraintBottom_toTopOf="@+id/displayFrag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="2" />
 
     <fragment
         android:id="@+id/displayFrag"
         android:name="edu.mnstate.assign5.DisplayFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/match_constraint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFrag" />
+        app:layout_constraintTop_toBottomOf="@+id/inputFrag"
+        app:layout_constraintVertical_weight="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

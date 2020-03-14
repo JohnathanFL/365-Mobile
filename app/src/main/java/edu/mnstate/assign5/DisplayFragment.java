@@ -5,12 +5,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Calendar;
 
 
@@ -18,6 +21,7 @@ import java.util.Calendar;
  * A simple {@link Fragment} subclass.
  */
 public class DisplayFragment extends Fragment implements PriceConsumer {
+    private static final String TAG = "DisplayFragment";
 
     GPU gpu = GPU.Intel;
     int ram = 8, numBatteries = 1;
@@ -48,21 +52,25 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
     private static BigDecimal dec(float amt) {
         return new BigDecimal(amt);
     }
+    private static BigDecimal dec(int amt) {
+        return new BigDecimal(amt);
+    }
 
     private void recalculate() {
-        BigDecimal totalPrice = new BigDecimal(0);
+        // Default price of 400
+        BigDecimal totalPrice = new BigDecimal(400);
 
         switch (this.gpu) {
             case AMD:
-                totalPrice.add(dec(150.0f));
+                totalPrice = totalPrice.add(dec(150));
                 this.gpuPrice.setText("+$150");
                 break;
             case Intel:
-                totalPrice.add(dec(0.0f));
+                totalPrice = totalPrice.add(dec(0));
                 this.gpuPrice.setText(R.string.noCharge);
                 break;
             case NVIDIA:
-                totalPrice.add(dec(400.0f));
+                totalPrice = totalPrice.add(dec(400));
                 this.gpuPrice.setText("+$400");
                 break;
         }
@@ -70,25 +78,25 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
         // Only allowing RAM as 8, 16, 32, or 64
         switch (this.ram) {
             case 8:
-                totalPrice.add(dec(0.0f));
+                totalPrice = totalPrice.add(dec(0));
                 this.ramPrice.setText(R.string.noCharge);
                 break;
             case 16:
-                totalPrice.add(dec(45.0f));
+                totalPrice = totalPrice.add(dec(45));
                 this.ramPrice.setText("+$45");
                 break;
             case 32:
-                totalPrice.add(dec(90.0f));
+                totalPrice = totalPrice.add(dec(90));
                 this.ramPrice.setText("+$90");
                 break;
             case 64:
-                totalPrice.add(dec(120.0f));
+                totalPrice = totalPrice.add(dec(120));
                 this.ramPrice.setText("+$120");
                 break;
         }
 
         this.batteryPrice.setText("$" + (this.numBatteries * 35)); // $35/battery
-        totalPrice.add(dec(this.numBatteries * 35));
+        totalPrice = totalPrice.add(dec(this.numBatteries * 35));
 
 
         Calendar cal = Calendar.getInstance();
@@ -100,7 +108,8 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
         monthDiff = Math.max(monthDiff, 1);
         numMonths.setText("" + monthDiff);
 
-        monthlyPayment.setText("$" + totalPrice.divide(dec(monthDiff)));
+        Log.d(TAG, "recalculate: " + totalPrice);
+        monthlyPayment.setText("$" + totalPrice.divide(dec(monthDiff), 2, RoundingMode.FLOOR));
     }
 
     @Override

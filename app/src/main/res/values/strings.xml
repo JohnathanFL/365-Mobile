@@ -16,6 +16,10 @@
     <string name="ram_price">RAM Price</string>
     <string name="months_until_payoff">Months until Payoff</string>
     <string name="battery_price">Battery Price</string>
+    <string name="gpu">GPU:</string>
+    <string name="batteries">#Batteries:</string>
+    <string name="ram">RAM</string>
+    <string name="payoff_date_min_1_month">Payoff Date (min 1 month)</string>
 
     <string-array name="ram_names">
         <item>8GB</item>

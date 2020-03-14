@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fragPadding">32dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="med_margin">16dp</dimen>
 </resources>
