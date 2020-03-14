@@ -1,3 +1,9 @@
+/**
+ * Calculate the monthly payment amount for the purchase of a new computer with customization.
+ * @author Johnathan Lee
+ * @date 2020-03-16
+ */
+
 package edu.mnstate.assign5;
 
 

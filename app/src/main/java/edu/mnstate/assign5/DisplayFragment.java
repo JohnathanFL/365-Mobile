@@ -1,3 +1,9 @@
+/**
+ * Calculate the monthly payment amount for the purchase of a new computer with customization.
+ * @author Johnathan Lee
+ * @date 2020-03-16
+ */
+
 package edu.mnstate.assign5;
 
 
@@ -49,6 +55,7 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
         return view;
     }
 
+    // Because it's tiring to write "new Bigdecimalblahblahblah"
     private static BigDecimal dec(float amt) {
         return new BigDecimal(amt);
     }
@@ -63,7 +70,7 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
         switch (this.gpu) {
             case AMD:
                 totalPrice = totalPrice.add(dec(150));
-                this.gpuPrice.setText("+$150");
+                this.gpuPrice.setText(R.string.amdCost);
                 break;
             case Intel:
                 totalPrice = totalPrice.add(dec(0));
@@ -71,7 +78,7 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
                 break;
             case NVIDIA:
                 totalPrice = totalPrice.add(dec(400));
-                this.gpuPrice.setText("+$400");
+                this.gpuPrice.setText(R.string.nvidiaCost);
                 break;
         }
 
@@ -83,15 +90,15 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
                 break;
             case 16:
                 totalPrice = totalPrice.add(dec(45));
-                this.ramPrice.setText("+$45");
+                this.ramPrice.setText(R.string.ram16Cost);
                 break;
             case 32:
                 totalPrice = totalPrice.add(dec(90));
-                this.ramPrice.setText("+$90");
+                this.ramPrice.setText(R.string.ram32Cost);
                 break;
             case 64:
                 totalPrice = totalPrice.add(dec(120));
-                this.ramPrice.setText("+$120");
+                this.ramPrice.setText(R.string.ram64Cost);
                 break;
         }
 

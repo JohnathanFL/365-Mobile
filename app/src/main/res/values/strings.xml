@@ -20,6 +20,11 @@
     <string name="batteries">#Batteries:</string>
     <string name="ram">RAM</string>
     <string name="payoff_date_min_1_month">Payoff Date (min 1 month)</string>
+    <string name="amdCost">+$150</string>
+    <string name="nvidiaCost">+$400</string>
+    <string name="ram16Cost">+$45</string>
+    <string name="ram32Cost">+$90</string>
+    <string name="ram64Cost">+$120</string>
 
     <string-array name="ram_names">
         <item>8GB</item>
