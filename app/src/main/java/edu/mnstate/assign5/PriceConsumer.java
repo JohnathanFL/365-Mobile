@@ -5,6 +5,9 @@ public interface PriceConsumer {
         AMD, Intel, NVIDIA
     }
 
+    // The granular ones are preferred. This is here for complete compliance with requirements
+    void setAll(GPU gpu, int ram, int numBats, int month, int year);
+
     void setGPU(GPU gpu);
     void setRAM(int amt);
     void setNumBatteries(int num);

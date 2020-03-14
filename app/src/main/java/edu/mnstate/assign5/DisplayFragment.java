@@ -113,6 +113,16 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
     }
 
     @Override
+    public void setAll(GPU gpu, int ram, int numBats, int month, int year) {
+        this.gpu = gpu;
+        this.ram = ram;
+        this.numBatteries = numBats;
+        this.month = month;
+        this.month = month + year * 12;
+        this.recalculate();
+    }
+
+    @Override
     public void setGPU(GPU gpu) {
         this.gpu = gpu;
         this.recalculate();
@@ -135,4 +145,6 @@ public class DisplayFragment extends Fragment implements PriceConsumer {
         this.month = month + year * 12;
         this.recalculate();
     }
+
+
 }

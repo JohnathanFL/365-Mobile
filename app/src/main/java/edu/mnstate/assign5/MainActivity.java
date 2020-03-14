@@ -20,5 +20,7 @@ public class MainActivity extends AppCompatActivity {
         inputFrag = (InputFragment)getSupportFragmentManager().findFragmentById(R.id.inputFrag);
         displayFrag = (DisplayFragment)getSupportFragmentManager().findFragmentById(R.id.displayFrag);
         inputFrag.consumer = displayFrag;
+
+        displayFrag.setAll(PriceConsumer.GPU.Intel, 8, 1, 0, 0);
     }
 }
