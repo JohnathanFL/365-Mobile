@@ -5,6 +5,8 @@ This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
 
 ### Minimum Requirements
 - [ ] Fragments that communicate with one another
+  - Everything is a single activity
+  - The context menu is the second fragment
 - [ ] Recycler view with clickable elements that provide more detail about the element
   - The shopping list display
 - [ ] SQLite database with at least 3 queries
@@ -34,7 +36,6 @@ This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
 ### Extra Effort
 - [ ] Nav drawer on left.
 - [ ] Programmatic UI generation in the ContextMenu fragment
-- [ ] Notifications
 - [ ] Popup windows
 Possibilities:
 - Network/web apis?
