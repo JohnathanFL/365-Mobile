@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lab22</string>
+    <string name="direct_reply_lab">Direct Reply Lab</string>
+    <string name="send_notification">Send Notification</string>
+    <string name="msg">Text message from John</string>
+    <string name="gotReply">Received a Reply</string>
+    <string name="enterReplyHere">Enter reply here</string>
+</resources>
