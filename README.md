@@ -35,6 +35,8 @@ This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
 - [x] Programmatic UI sizing in the popup windows
 - [x] Popup windows
 - [x] Alert windows
+- [x] Format string resources
+- [x] FloatingActionButton
 Possibilities:
 - Network/web apis?
   - Could retrieve images associated with what the user typed for shopping list
@@ -82,3 +84,7 @@ Frontend
     - Clicked: Passes the ListName 
 - Detail screen (View individual items)
   - All the stuff we stored about the item
+
+
+### Things learned
+- SharedPreferences may choose to not save your changes to a variable if you don't clear before put

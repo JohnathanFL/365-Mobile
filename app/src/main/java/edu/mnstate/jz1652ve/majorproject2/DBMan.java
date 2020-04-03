@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,7 +55,10 @@ public class DBMan extends SQLiteOpenHelper {
     }
 
     public static void setItem(Context ctx, Item order) {
+
         SQLiteDatabase db = get(ctx).getWritableDatabase();
+
+        Log.d("DBMan", "setItem: " + order.toString());
 
         db.insert("Items", null, order.toCVals());
     }
@@ -70,7 +74,11 @@ public class DBMan extends SQLiteOpenHelper {
         SQLiteDatabase db = get(ctx).getReadableDatabase();
         Cursor c = db.rawQuery("select name, list, quant, price, category, getBy from Items where (name = ? and list = ?);", new String[]{name, list});
         c.moveToFirst();
-        return new Item(c);
+
+        if(c.getCount() != 0)
+            return new Item(c);
+        else
+            return null;
     }
 
     // With all the context args, I feel like I should be naming these things like c99_dbman_delitem()

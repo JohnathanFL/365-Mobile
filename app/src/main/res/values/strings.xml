@@ -8,4 +8,6 @@
     <string name="defaultPrice">1.0</string>
     <string name="defaultQuant">1</string>
     <string name="mustEnterProdName">You need to enter a product name!</string>
+    <string name="quantPrice">%d at $%.2f/each</string>
+    <string name="nextShoppingDay">On your next shopping day</string>
 </resources>

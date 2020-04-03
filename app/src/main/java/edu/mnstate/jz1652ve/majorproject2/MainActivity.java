@@ -30,7 +30,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    static final String PREF_NAME = "MyPrefs";
+    static final String PREF_NAME = "edu.mnstate.jz1652ve.mp2.prefs";
     ListFragment listFrag;
     OrderDetail detailFrag;
     FloatingActionButton addBtn;
@@ -59,13 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
 
-        Set<String> lists = prefs.getStringSet("Lists", defaultLists);
-        if(lists.size() == 0) {
-            lists.add("Main");
+        Set<String> lists = prefs.getStringSet("Lists", null);
+        if(lists == null || lists.size() == 0) {
+            Log.d(TAG, "onCreate: Defaulted lists");
             prefs.edit()
-                    .putStringSet("Lists", lists)
+                    .putStringSet("Lists", defaultLists)
                     .commit();
+        } else {
+            Log.d(TAG, "listsList: " + lists.toString());
         }
+
+
 
         this.listFrag.dataChanged();
 
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             setupAddWindow(root);
 
-            this.addWindow = new PopupWindow(root, (int)(absRoot.getWidth() / 1.1), (int)(absRoot.getHeight() / 1.1));
+            this.addWindow = new PopupWindow(root, (int)(absRoot.getWidth() * 0.9), (int)(absRoot.getHeight() * 0.9));
             addWindow.setFocusable(true);
             addWindow.update();
             addWindow.showAtLocation(findViewById(R.id.absRoot), Gravity.CENTER, 0, 0);
@@ -115,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             Calendar cal = Calendar.getInstance();
             cal.set(picker.getYear(), picker.getMonth(), picker.getDayOfMonth());
 
+            Log.d(TAG, "Category was " + category);
             DBMan.setItem(this.getBaseContext(), new Item(name, ListFragment.curList, category, price, quant, onMonday.isChecked() ? null : cal));
             ListFragment.dataChanged();
 

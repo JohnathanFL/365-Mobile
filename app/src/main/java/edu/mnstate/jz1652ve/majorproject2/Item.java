@@ -15,6 +15,7 @@ public class Item {
     public Item(String name, String list, String cat, int price, int quant, Calendar getBy) {
         this.name = name;
         this.list = list;
+        this.category = cat;
         this.price = price;
         this.quant = quant;
         this.getBy = getBy;
@@ -46,6 +47,7 @@ public class Item {
     public ContentValues toCVals() {
         ContentValues res = new ContentValues();
         res.put("name", this.name);
+        res.put("category", this.category);
         res.put("list", this.list);
         res.put("price", this.price);
         res.put("quant", this.quant);
@@ -53,5 +55,17 @@ public class Item {
             res.put("getBy", String.format("%s-%s-%s", this.getBy.get(Calendar.MONTH), this.getBy.get(Calendar.DAY_OF_MONTH), this.getBy.get(Calendar.YEAR)));
 
         return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", list='" + list + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", quant=" + quant +
+                ", getBy=" + (getBy != null ? getBy.get(Calendar.YEAR) + "-" + getBy.get(Calendar.MONTH) + "-" + getBy.get(Calendar.DAY_OF_MONTH) : "null")+
+                '}';
     }
 }

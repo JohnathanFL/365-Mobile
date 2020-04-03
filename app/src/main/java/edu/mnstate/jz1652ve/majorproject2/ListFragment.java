@@ -11,6 +11,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import java.util.Set;
  * Displays the different lists
  */
 public class ListFragment extends Fragment {
+    private static final String TAG = "ListFragment";
 
     // Our root
     View me;
@@ -80,13 +82,18 @@ public class ListFragment extends Fragment {
                 SharedPreferences prefs = this.getContext().getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
                 Set<String> lists = prefs.getStringSet("Lists", MainActivity.defaultLists);
                 lists.add(name);
+
                 prefs.edit()
+                        .clear()
                         .putStringSet("Lists", lists)
                         .commit();
 
+                lists = prefs.getStringSet("Lists", null);
+                Log.d(TAG, "listsList: " + lists.toString());
+
                 this.lists = lists.toArray(new String[]{});
 
-                this.listSelector.setAdapter(new ArrayAdapter<String>(this.me.getContext(), android.R.layout.simple_list_item_1, this.lists));
+                this.listSelector.setAdapter(new ArrayAdapter<>(this.me.getContext(), android.R.layout.simple_list_item_1, this.lists));
 
                 // Preserve the old selection
 
@@ -101,8 +108,6 @@ public class ListFragment extends Fragment {
             builder.show();
         });
 
-
-
         //DBMan.setItem(this.getContext(), new Item("Apples", "Main", 999, 2, Calendar.getInstance()));
 
         this.list.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -112,10 +117,11 @@ public class ListFragment extends Fragment {
 
 
         SharedPreferences prefs = this.me.getContext().getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
-        Set<String> allLists = prefs.getStringSet("Lists", MainActivity.defaultLists);
+        Set<String> allLists = prefs.getStringSet("Lists", null);
         if(allLists.size() == 0) {
             allLists.add("Main");
             prefs.edit()
+                    .clear()
                     .putStringSet("Lists", allLists)
                     .commit();
         }
@@ -135,8 +141,6 @@ public class ListFragment extends Fragment {
 
             }
         });
-
-
 
         return this.me;
     }
@@ -170,6 +174,7 @@ public class ListFragment extends Fragment {
             return res;
         }
 
+        View lastSelected = null;
         @Override
         public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, int position) {
             Item item = this.items.get(position);
@@ -179,14 +184,25 @@ public class ListFragment extends Fragment {
             holder.itemPrice.setText(format.format(item.price / 100 + (item.price % 100) / 100.0));
             holder.itemQuant.setText("" + item.quant);
 
+
             holder.view.setOnClickListener(v -> {
                 Bundle bun = new Bundle();
                 bun.putString("name", item.name);
                 bun.putString("list", item.list);
                 inspector.inspect(bun);
+                Log.d(TAG, "Clicked " + item.toString());
+                holder.view.setBackgroundColor(getResources().getColor(R.color.selectedBg));
+                if(lastSelected != null)
+                    lastSelected.setBackgroundColor(getResources().getColor(android.R.color.background_light));
+                lastSelected = holder.view;
             });
             holder.delBtn.setOnClickListener(v -> {
                 DBMan.delItem(holder.view.getContext(), item.name, item.list);
+                Bundle bun = new Bundle();
+                bun.putString("name", item.name);
+                bun.putString("list", item.list);
+                bun.putBoolean("delete", true);
+                inspector.inspect(bun);
                 dataChanged();
             });
         }
