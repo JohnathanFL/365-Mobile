@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/add_background"
+    android:gravity="clip_horizontal"
+    android:orientation="vertical"
+    android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/prodName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName" />
+
+    <RadioGroup
+        android:id="@+id/prodCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/groceryOpt">
+
+        <RadioButton
+            android:id="@+id/groceryOpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Groceries" />
+
+        <RadioButton
+            android:id="@+id/bathOpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bath/Beauty" />
+
+        <RadioButton
+            android:id="@+id/medOpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medicinal" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/orderQuantNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@string/defaultQuant" />
+
+        <SeekBar
+            android:id="@+id/orderQuantSeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:max="25"
+            android:progress="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/prodPriceNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@string/defaultPrice" />
+
+        <SeekBar
+            android:id="@+id/prodPriceSeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:indeterminate="false"
+            android:max="25"
+            android:progress="1" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/onMonday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Each Monday" />
+
+    <DatePicker
+        android:id="@+id/getBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center" />
+
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/ok" />
+
+</LinearLayout>

@@ -3,4 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="quantPriceSep">\@</string>
+    <string name="name">Item Name</string>
+    <string name="defaultPrice">1.0</string>
+    <string name="defaultQuant">1</string>
+    <string name="mustEnterProdName">You need to enter a product name!</string>
 </resources>

@@ -4,39 +4,37 @@
 This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
 
 ### Minimum Requirements
-- [ ] Fragments that communicate with one another
+- [x] Fragments that communicate with one another
   - Everything is a single activity
   - The context menu is the second fragment
-- [ ] Recycler view with clickable elements that provide more detail about the element
+- [x] Recycler view with clickable elements that provide more detail about the element
   - The shopping list display
-- [ ] SQLite database with at least 3 queries
+- [x] SQLite database with at least 3 queries
   - Holds the list itself
-- [ ] Shared preferences
-  - Holds theme
-  - Holds default shopping day
-- [ ] Bundles
-  - Used to pass around what you clicked
-- [ ] Radio buttons with radio group
+- [x] Shared preferences
+  - Holds the list of lists
+- [x] Bundles
+  - Used to the data in the fragment interface
+- [x] Radio buttons with radio group
   - Select the category of item
-- [ ] Check boxes
-  - Whether or not it's on the default shopping day
-  - Whether it's a recurring purchase
-- [ ] Text, edit text,
-  - Item name/desc
-- [ ] Image button
-  - A better + button than I had in my todo app
-- [ ] Date picker
+- [x] Check boxes
+  - Whether or not it's on the default shopping day (Monday)
+- [x] Text, edit text,
+  - Item name
+- [x] Image button
+  - The X to delete from a list
+- [x] Date picker
   - Pick default shopping day and custom shopping day for items
-- [ ] Spinner
+- [x] Spinner
   - Swap between lists
-- [ ] Seekbar
+- [x] Seekbar
   - Quantity (tied with a numeric field)
-- [ ] Button
+- [x] Button
   - Submit, etc. This one's easy.
 ### Extra Effort
-- [ ] Nav drawer on left.
-- [ ] Programmatic UI generation in the ContextMenu fragment
-- [ ] Popup windows
+- [x] Programmatic UI sizing in the popup windows
+- [x] Popup windows
+- [x] Alert windows
 Possibilities:
 - Network/web apis?
   - Could retrieve images associated with what the user typed for shopping list

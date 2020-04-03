@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Learned a little of this from https://stackoverflow.com/questions/8203606/android-how-to-draw-a-border-to-a-linearlayout ,
+but I've also done some work with raw SVG before, and this isn't much different -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <stroke android:color="@color/colorPrimaryDark" android:width="10dp"/>
+    <solid android:color="@color/cardview_light_background"/>
+</shape>
