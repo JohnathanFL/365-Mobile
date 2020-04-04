@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nil">0dp</dimen>
+    <dimen name="largeMargin">64dp</dimen>
+    <dimen name="smallMargin">16dp</dimen>
+</resources>

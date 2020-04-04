@@ -14,7 +14,7 @@ This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
 - [x] Shared preferences
   - Holds the list of lists
 - [x] Bundles
-  - Used to the data in the fragment interface
+  - Used to the data in the fragment interface, including a defaulted `deleted` attribute
 - [x] Radio buttons with radio group
   - Select the category of item
 - [x] Check boxes

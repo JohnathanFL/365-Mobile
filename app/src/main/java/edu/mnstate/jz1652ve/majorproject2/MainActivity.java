@@ -1,3 +1,10 @@
+/**
+ * A simple grocery list app.
+ *
+ * Johnathan Lee
+ * MSUM Mobile App Dev
+ * Due 04/03/20
+ */
 package edu.mnstate.jz1652ve.majorproject2;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -99,10 +106,16 @@ public class MainActivity extends AppCompatActivity {
         CheckBox onMonday = root.findViewById(R.id.onMonday);
         DatePicker picker = root.findViewById(R.id.getBy);
         picker.setEnabled(false);
+        picker.setAlpha(0.3f);
+        picker.setFocusable(false);
 
         Button addBtn = root.findViewById(R.id.addBtn);
 
-        onMonday.setOnCheckedChangeListener((v, checked) -> picker.setEnabled(!checked));
+        onMonday.setOnCheckedChangeListener((v, checked) -> {
+            picker.setEnabled(!checked);
+            picker.setFocusable(!checked);
+            picker.setAlpha(checked ? 0.3f : 1.0f);
+        });
         
         addBtn.setOnClickListener(v -> {
             if(prodName.getText().length() == 0) {

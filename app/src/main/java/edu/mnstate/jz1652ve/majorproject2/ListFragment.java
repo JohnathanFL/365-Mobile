@@ -1,3 +1,11 @@
+/**
+ * A simple grocery list app.
+ *
+ * Johnathan Lee
+ * MSUM Mobile App Dev
+ * Due 04/03/20
+ */
+
 package edu.mnstate.jz1652ve.majorproject2;
 
 import android.content.Context;
@@ -24,9 +32,11 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
 
@@ -41,7 +51,7 @@ public class ListFragment extends Fragment {
     View me;
     Spinner listSelector;
     RecyclerView list;
-    ImageButton addListBtn;
+    ImageButton addListBtn, delListBtn;
 
     String[] lists;
 
@@ -72,6 +82,7 @@ public class ListFragment extends Fragment {
         this.listSelector = this.me.findViewById(R.id.listSelector);
         this.list = this.me.findViewById(R.id.list);
         this.addListBtn = this.me.findViewById(R.id.addListBtn);
+        this.delListBtn = this.me.findViewById(R.id.delListBtn);
 
         this.addListBtn.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
@@ -79,6 +90,11 @@ public class ListFragment extends Fragment {
             builder.setView(newListTxt);
             builder.setPositiveButton(android.R.string.ok, (d, btn) -> {
                 String name = newListTxt.getText().toString();
+                if(name.isEmpty()) {
+                    d.dismiss();
+                    return;
+                }
+
                 SharedPreferences prefs = this.getContext().getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
                 Set<String> lists = prefs.getStringSet("Lists", MainActivity.defaultLists);
                 lists.add(name);
@@ -106,6 +122,23 @@ public class ListFragment extends Fragment {
                 d.dismiss();
             });
             builder.show();
+        });
+
+        this.delListBtn.setOnClickListener(v -> {
+            String curList = this.lists[this.listSelector.getSelectedItemPosition()];
+            SharedPreferences prefs = this.getContext().getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
+            Set<String> allLists = prefs.getStringSet("Lists", null);
+
+            allLists.remove(curList);
+            prefs.edit()
+                    .clear()
+                    .putStringSet("Lists", allLists)
+                    .commit();
+
+            this.listSelector.setSelection(0);
+            this.lists = allLists.toArray(new String[]{});
+            this.listSelector.setAdapter(new ArrayAdapter<>(this.me.getContext(), android.R.layout.simple_list_item_1, this.lists));
+            DBMan.delList(this.getContext(), curList);
         });
 
         //DBMan.setItem(this.getContext(), new Item("Apples", "Main", 999, 2, Calendar.getInstance()));
@@ -181,11 +214,14 @@ public class ListFragment extends Fragment {
             holder.itemName.setText(item.name);
             NumberFormat format = NumberFormat.getCurrencyInstance();
             // /10 to get the dollars, %10 to get cents. Integer division on the first is intentional
-            holder.itemPrice.setText(format.format(item.price / 100 + (item.price % 100) / 100.0));
-            holder.itemQuant.setText("" + item.quant);
+            if(item.getBy != null) holder.itemDate.setText(item.getBy.get(Calendar.YEAR) + "-" + (item.getBy.get(Calendar.MONTH) + 1) + "-" + item.getBy.get(Calendar.DAY_OF_MONTH));
+            else holder.itemDate.setText("");
 
 
             holder.view.setOnClickListener(v -> {
+                if(lastSelected == holder.view)
+                    return;
+
                 Bundle bun = new Bundle();
                 bun.putString("name", item.name);
                 bun.putString("list", item.list);
@@ -214,7 +250,7 @@ public class ListFragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             View view;
-            TextView itemName, itemQuant, itemPrice;
+            TextView itemName, itemDate;
             ImageButton delBtn;
 
             ViewHolder(@NonNull View itemView) {
@@ -222,8 +258,7 @@ public class ListFragment extends Fragment {
 
                 this.view = itemView;
                 this.itemName = itemView.findViewById(R.id.itemName);
-                this.itemQuant = itemView.findViewById(R.id.itemQuant);
-                this.itemPrice = itemView.findViewById(R.id.itemPrice);
+                this.itemDate = itemView.findViewById(R.id.itemDate);
                 this.delBtn = itemView.findViewById(R.id.delBtn);
             }
         }

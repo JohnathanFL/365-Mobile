@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".OrderDetail">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/prodName"
         style="@style/TextAppearance.AppCompat.Headline"

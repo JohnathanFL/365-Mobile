@@ -10,4 +10,7 @@
     <string name="mustEnterProdName">You need to enter a product name!</string>
     <string name="quantPrice">%d at $%.2f/each</string>
     <string name="nextShoppingDay">On your next shopping day</string>
+    <string name="groceries">Groceries</string>
+    <string name="bath">Bath/Beauty</string>
+    <string name="medicinal">Medicinal</string>
 </resources>

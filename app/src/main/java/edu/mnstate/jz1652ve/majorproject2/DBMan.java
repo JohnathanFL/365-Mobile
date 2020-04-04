@@ -1,3 +1,11 @@
+/**
+ * A simple grocery list app.
+ *
+ * Johnathan Lee
+ * MSUM Mobile App Dev
+ * Due 04/03/20
+ */
+
 package edu.mnstate.jz1652ve.majorproject2;
 
 import android.content.ContentValues;
@@ -85,6 +93,11 @@ public class DBMan extends SQLiteOpenHelper {
     public static void delItem(Context ctx, String name, String list) {
         SQLiteDatabase db = get(ctx).getWritableDatabase();
         db.delete("Items", "(name = ? and list = ?)", new String[]{name, list});
+    }
+
+    public static void delList(Context ctx, String list) {
+        SQLiteDatabase db = get(ctx).getWritableDatabase();
+        db.delete("Items", "list = ?", new String[]{list});
     }
 
     /**

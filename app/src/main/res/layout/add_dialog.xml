@@ -8,7 +8,7 @@
     android:gravity="clip_horizontal"
     android:orientation="vertical"
     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-    android:padding="16dp">
+    android:padding="@dimen/smallMargin">
 
     <EditText
         android:id="@+id/prodName"
@@ -29,19 +29,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:text="Groceries" />
+            android:text="@string/groceries" />
 
         <RadioButton
             android:id="@+id/bathOpt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bath/Beauty" />
+            android:text="@string/bath" />
 
         <RadioButton
             android:id="@+id/medOpt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medicinal" />
+            android:text="@string/medicinal" />
     </RadioGroup>
 
     <LinearLayout
@@ -97,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="Each Monday" />
+        android:text="@string/nextShoppingDay" />
 
     <DatePicker
         android:id="@+id/getBy"

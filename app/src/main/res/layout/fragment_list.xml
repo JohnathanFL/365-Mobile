@@ -16,7 +16,7 @@
         <Spinner
             android:id="@+id/listSelector"
             style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/nil"
             android:layout_height="wrap_content"
             android:layout_weight="9" />
 
@@ -24,8 +24,15 @@
             android:id="@+id/addListBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/clear"
 
             android:src="@android:drawable/ic_input_add" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delListBtn"
+            android:src="@android:drawable/ic_delete"
+            android:background="@color/clear"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
