@@ -18,6 +18,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -27,10 +30,13 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -84,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
             ViewGroup absRoot = findViewById(R.id.absRoot);
 
             LinearLayout root = (LinearLayout) getLayoutInflater().inflate(R.layout.add_dialog, absRoot, false);
-
+            this.addWindow = new PopupWindow(root, (int)(absRoot.getWidth() * 0.9), (int)(absRoot.getHeight() * 0.9));
 
             setupAddWindow(root);
 
-            this.addWindow = new PopupWindow(root, (int)(absRoot.getWidth() * 0.9), (int)(absRoot.getHeight() * 0.9));
+
             addWindow.setFocusable(true);
             addWindow.update();
             addWindow.showAtLocation(findViewById(R.id.absRoot), Gravity.CENTER, 0, 0);
@@ -98,6 +104,34 @@ public class MainActivity extends AppCompatActivity {
 
     void setupAddWindow(View root) {
         EditText prodName = root.findViewById(R.id.prodName);
+        Spinner completer = root.findViewById(R.id.completions);
+
+        ArrayList<String> curList = DBMan.getItemsLikeName(this.getBaseContext(), "");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_dropdown_item_1line, curList);
+        completer.setAdapter(adapter);
+
+        prodName.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override public void afterTextChanged(Editable s) {
+                adapter.clear();
+                adapter.addAll(DBMan.getItemsLikeName(getBaseContext(), s.toString()).toArray(new String[]{}));
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+        completer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                prodName.setText(curList.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         RadioGroup radioGroup = root.findViewById(R.id.prodCat);
 
         EditText quantNum = root.findViewById(R.id.orderQuantNum), priceNum = root.findViewById(R.id.prodPriceNum);

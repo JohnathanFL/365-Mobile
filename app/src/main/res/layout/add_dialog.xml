@@ -10,13 +10,26 @@
     android:outlineAmbientShadowColor="@color/colorPrimaryDark"
     android:padding="@dimen/smallMargin">
 
-    <EditText
-        android:id="@+id/prodName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/name"
-        android:inputType="textPersonName" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/prodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/name"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/completions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dialog" />
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/prodCat"

@@ -11,6 +11,10 @@ This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
   - The shopping list display
 - [x] SQLite database with at least 3 queries
   - Holds the list itself
+  - Queries
+    - Get all items like a certain name
+    - Get all items in a certain list
+    - Get the item in a list of a name
 - [x] Shared preferences
   - Holds the list of lists
 - [x] Bundles
@@ -37,9 +41,6 @@ This is my shopping list app, created in Spring 2020 for CSIS 365 at MSUM.
 - [x] Alert windows
 - [x] Format string resources
 - [x] FloatingActionButton
-Possibilities:
-- Network/web apis?
-  - Could retrieve images associated with what the user typed for shopping list
 ### Plan
 Backend
 - Username

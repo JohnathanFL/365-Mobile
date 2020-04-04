@@ -119,18 +119,18 @@ public class DBMan extends SQLiteOpenHelper {
     }
 
     /**
-     * Get all items with a name, regardless of list
+     * Get all product names like the input
      * @param ctx
      * @param name
      * @return
      */
-    public static ArrayList<Item> getItemsByName(Context ctx, String name) {
+    public static ArrayList<String> getItemsLikeName(Context ctx, String name) {
         SQLiteDatabase db = get(ctx).getReadableDatabase();
-        Cursor c = db.rawQuery("select name, list, quant, price, category, getBy from Items where (name = ?);", new String[]{name});
+        Cursor c = db.rawQuery("select name from Items where (name like ?);", new String[]{"%" + name + "%"});
 
-        ArrayList<Item> items = new ArrayList<>();
+        ArrayList<String> items = new ArrayList<>();
         while(c.moveToNext()) {
-            items.add(new Item(c));
+            items.add(c.getString(0));
         }
 
         return items;
