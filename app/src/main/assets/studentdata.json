@@ -1,0 +1,29 @@
+{
+  "studentList": [
+    {
+      "id": 123,
+      "name": "Johnathan",
+      "major": "CSIS"
+    },
+    {
+      "id": 456,
+      "name": "Anne",
+      "major": "Art"
+    },
+    {
+      "id": 789,
+      "name": "Ben",
+      "major": "History"
+    },
+    {
+      "id": 101112,
+      "name": "Rami",
+      "major": "English"
+    },
+    {
+      "id": 131415,
+      "name": "Zargothrax",
+      "major": "WD"
+    }
+  ]
+}
