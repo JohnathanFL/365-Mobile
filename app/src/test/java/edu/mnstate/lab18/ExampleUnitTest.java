@@ -1,4 +1,4 @@
-package edu.mnstate.lab18;
+package edu.mnstate.lab19;
 
 import org.junit.Test;
 

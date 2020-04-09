@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "edu.mnstate.lab18"
+        applicationId "edu.mnstate.lab19"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1

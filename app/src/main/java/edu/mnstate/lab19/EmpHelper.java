@@ -1,4 +1,4 @@
-package edu.mnstate.lab18;
+package edu.mnstate.lab19;
 
 import android.content.Context;
 import android.database.SQLException;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class EmpHelper extends SQLiteOpenHelper {
-    public static String DB_NAME = "emp.db", TABLE_NAME = "empTable", EMPID = "_id", EMPNAME = "empName";
-    public static int DB_VERSION  = 4;
+    public static String DB_NAME = "emp.db", TABLE_NAME = "empTable", EMPID = "_id", EMPNAME = "empName", EMPADDR = "empAddress";
+    public static int DB_VERSION  = 5;
     private Context context;
 
     public EmpHelper(Context context) {
@@ -22,7 +22,7 @@ public class EmpHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(255));", TABLE_NAME, EMPID, EMPNAME));
+            db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s VARCHAR(255), %s TEXT);", TABLE_NAME, EMPID, EMPNAME, EMPADDR));
             MainActivity.message(this.context, "Created DB");
         } catch (SQLException e) {
             MainActivity.message(this.context, "Failed because: " + e);
