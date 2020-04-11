@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab24</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
+    <string name="camerafragment">CameraFragment</string>
+    <string name="galleryfragment">GalleryFragment</string>
+    <string name="uploadfragment">UploadFragment</string>
+</resources>
