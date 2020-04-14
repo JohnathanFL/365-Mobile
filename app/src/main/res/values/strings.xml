@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab25</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
+    <string name="camerafragment">Camera Fragment</string>
+    <string name="galleryfragment">Gallery Fragment</string>
+    <string name="uploadfragment">Upload Fragment</string>
+</resources>
