@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout layout = findViewById(R.id.root);
 
         this.jobList = new JobList();
+        swapFrag(jobList, JobList.FRAG_TAG);
 
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
