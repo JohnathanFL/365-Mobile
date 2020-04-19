@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 default:
                     break;
-
             }
 
             return true;

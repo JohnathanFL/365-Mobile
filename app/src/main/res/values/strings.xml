@@ -5,4 +5,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="keywords">Keywords</string>
     <string name="sep">-</string>
+    <string name="licenseHeader">Assign6 Is licensed under the Apache 2.0 License\n\nAssign6 uses the following open source projects:</string>
+
+    <string name="retrofitURL">https://github.com/square/retrofit</string>
+    <string name="gsonURL">https://github.com/google/gson</string>
+    <string name="retrofit_2012_square_inc">Retrofit - © 2012 Square, Inc.</string>
+    <string name="gson_2008_google_inc">GSon - © 2008 Google Inc.</string>
 </resources>

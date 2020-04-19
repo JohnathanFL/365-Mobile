@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:title="Retrofit - © 2012 Square, Inc." />
-    <item android:title="GSon - © 2008 Google Inc."/>
+    <item android:id="@+id/retrofit" android:title="@string/retrofit_2012_square_inc"/>
+    <item android:id="@+id/gson" android:title="@string/gson_2008_google_inc"/>
 </menu>
