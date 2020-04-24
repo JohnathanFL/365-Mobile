@@ -9,8 +9,8 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/w"
+        android:layout_height="@dimen/w"
         android:id="@+id/fragujo"
         />
     

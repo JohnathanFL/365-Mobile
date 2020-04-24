@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="4"
-        android:text="TextView"
+        android:text=""
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:id="@+id/jobComp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:id="@+id/jobType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
     </LinearLayout>
 
