@@ -1,5 +1,7 @@
 package edu.mnstate.jz1652ve.assign6;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -81,6 +83,12 @@ public class JobList extends Fragment {
                 });
     }
 
+    void openURL(String str) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(str));
+        startActivity(intent);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,6 +122,8 @@ public class JobList extends Fragment {
             holder.jobTitle.setText(job.title);
             holder.jobType.setText(job.type);
             holder.jobComp.setText(job.company);
+
+            holder.me.setOnClickListener(v -> openURL(job.url));
         }
 
         @Override
@@ -122,11 +132,13 @@ public class JobList extends Fragment {
         }
 
         public class Holder extends RecyclerView.ViewHolder {
+            View me;
             TextView jobTitle, jobComp, jobType;
 
             public Holder(@NonNull View itemView) {
                 super(itemView);
 
+                this.me = itemView;
                 this.jobTitle = itemView.findViewById(R.id.jobTitle);
                 this.jobComp = itemView.findViewById(R.id.jobComp);
                 this.jobType = itemView.findViewById(R.id.jobType);
