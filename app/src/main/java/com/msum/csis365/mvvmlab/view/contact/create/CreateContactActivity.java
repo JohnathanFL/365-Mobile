@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.msum.csis365.mvvmlab.R;
@@ -21,6 +22,7 @@ import com.msum.csis365.mvvmlab.R;
 public class CreateContactActivity extends AppCompatActivity {
 
     // TODO - STEP 1 - Create a local variable to hold an instance of the ViewModel
+    private CreateContactViewModel viewModel;
 
     private TextInputLayout tilForename;
     private TextInputLayout tilSurname;
@@ -43,6 +45,9 @@ public class CreateContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_contact);
 
         // TODO - STEP 2 - Create an instance of the ViewModel and set it to the local variable
+        viewModel = ViewModelProvider.AndroidViewModelFactory
+                .getInstance(getApplication())
+                .create(CreateContactViewModel.class);
 
         bindViews();
         setTextWatchers();
@@ -50,6 +55,10 @@ public class CreateContactActivity extends AppCompatActivity {
         setClickListeners();
 
         // TODO - STEP 3 - Observe the exposed Live Data from Step 2
+        viewModel.getViewState().observe(this, createContactViewState -> {
+            setViewErrors(createContactViewState);
+            consumeResultState(createContactViewState);
+        });
     }
 
     private void setViewErrors(CreateContactViewState viewState) {
@@ -113,6 +122,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO - STEP 4 - Notify the ViewModel that the user is attempting to save the input
+                viewModel.onSaveClicked();
             }
         });
     }
@@ -143,6 +153,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 5 - Pass the input text to the ViewModel
+                viewModel.setForename(s.toString());
             }
 
             @Override
@@ -160,6 +171,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 6 - Pass the input text to the ViewModel
+                viewModel.setSurname(s.toString());
             }
 
             @Override
@@ -177,6 +189,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 7 - Pass the input text to the ViewModel
+                viewModel.setPhoneNumber(s.toString());;
             }
 
             @Override
@@ -194,6 +207,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 8 - Pass the input text to the ViewModel
+                viewModel.setStreet(s.toString());
             }
 
             @Override
@@ -211,6 +225,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 9 - Pass the input text to the ViewModel
+                viewModel.setCity(s.toString());
             }
 
             @Override
@@ -228,6 +243,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 10 - Pass the input text to the ViewModel
+                viewModel.setState(s.toString());
             }
 
             @Override
@@ -245,6 +261,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 11 - Pass the input text to the ViewModel
+                viewModel.setZipCode(s.toString());
             }
 
             @Override
@@ -262,6 +279,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 12 - Pass the input text to the ViewModel
+                viewModel.setCountry(s.toString());
             }
 
             @Override
@@ -279,6 +297,7 @@ public class CreateContactActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO - STEP 13 - Pass the input text to the ViewModel
+                viewModel.setEmail(s.toString());
             }
 
             @Override
@@ -294,6 +313,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 14 - Pass the input text to the ViewModel
+                    viewModel.setForename(tilForename.getEditText().getText().toString());
                 }
             }
         });
@@ -303,6 +323,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 15 - Pass the input text to the ViewModel
+                    viewModel.setSurname(tilSurname.getEditText().getText().toString());
                 }
             }
         });
@@ -312,6 +333,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 16 - Pass the input text to the ViewModel
+                    viewModel.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString());
                 }
             }
         });
@@ -321,6 +343,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 17 - Pass the input text to the ViewModel
+                    viewModel.setStreet(tilStreet.getEditText().getText().toString());
                 }
             }
         });
@@ -330,6 +353,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 18 - Pass the input text to the ViewModel
+                    viewModel.setCity(tilCity.getEditText().getText().toString());
                 }
             }
         });
@@ -339,6 +363,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 19 - Pass the input text to the ViewModel
+                    viewModel.setState(tilState.getEditText().getText().toString());
                 }
             }
         });
@@ -348,6 +373,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 20 - Pass the input text to the ViewModel
+                    viewModel.setZipCode(tilZipCode.getEditText().getText().toString());
                 }
             }
         });
@@ -357,6 +383,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 21 - Pass the input text to the ViewModel
+                    viewModel.setCountry(tilCountry.getEditText().getText().toString());
                 }
             }
         });
@@ -366,6 +393,7 @@ public class CreateContactActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     // TODO - STEP 22 - Pass the input text to the ViewModel
+                    viewModel.setEmail(tilEmail.getEditText().getText().toString());
                 }
             }
         });
@@ -376,6 +404,7 @@ public class CreateContactActivity extends AppCompatActivity {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     // TODO - STEP 23 - Notify the ViewModel that the user is attempting to save the input
+                    viewModel.onSaveClicked();
                     handled = true;
                 }
                 return handled;
