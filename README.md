@@ -41,7 +41,6 @@ General idea will be a battle plan app.
   - [ ] Date picker
   - [ ] Seekbar – do not simply use this to rate the app!
   - [ ] Spinner
-- [ ] Include the requirements listed above for the average grade
 - [ ] Action bar 
 - [ ] Options menu
 - [ ] Use Styles and a different Theme

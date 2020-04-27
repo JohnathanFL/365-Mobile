@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/map"
+        android:id="@+id/navMap"
+        android:icon="@android:drawable/ic_menu_mapmode"/>
+    <item
+        android:title="@string/companies"
+        android:id="@+id/navComp"
+        android:icon="@android:drawable/sym_contact_card"
+        />
+    <item
+        android:title="@string/strongholds"
+        android:id="@+id/navStronghold"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        />
+
+</menu>
