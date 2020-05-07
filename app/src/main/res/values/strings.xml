@@ -6,4 +6,31 @@
     <string name="map">Map</string>
     <string name="companies">Companies</string>
     <string name="strongholds">Strongholds</string>
+    <string name="title_activity_add_stronghold">AddStrongholdActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_add_contact">AddContactActivity</string>
+    <string name="parent">Parent</string>
+    <string name="child">Child</string>
+    <string name="sibling">Sibling</string>
+    <string name="extFam">Extended Family</string>
+    <string name="acquaintance">Acquaintance</string>
+    <string name="friend">Friend</string>
+    <string name="closeFriend">Close Friend</string>
+    <string name="sigOth">Significant Other</string>
+
+    <string-array name="relTypes">
+        <item>Parent</item>
+        <item>Child</item>
+        <item>Sibling</item>
+        <item>Extended Family</item>
+        <item>Acquaintance</item>
+        <item>Friend</item>
+        <item>Close Friend</item>
+        <item>Significant Other</item>
+    </string-array>
+    <string name="title_activity_loc_picker">Map</string>
 </resources>

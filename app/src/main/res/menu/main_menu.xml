@@ -7,7 +7,7 @@
         android:icon="@android:drawable/ic_menu_mapmode"/>
     <item
         android:title="@string/companies"
-        android:id="@+id/navComp"
+        android:id="@+id/navList"
         android:icon="@android:drawable/sym_contact_card"
         />
     <item

@@ -1,109 +1,121 @@
 package edu.mnstate.jz1652ve.finalproject
 
+import android.content.ContentValues
 import android.content.Context
-import androidx.room.*
-import com.google.android.gms.maps.model.LatLng
-import java.sql.Date
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
+import android.widget.Toast
+import java.lang.Exception
+import java.sql.SQLException
 
-@Entity
-data class Company(
-    @PrimaryKey val name: String,
-    @ColumnInfo val leader: String,
-    val ty: Char,
-    val number: UInt) {
+public fun relFromInt(i: Int): RelType = when(i) {
+    0 -> RelType.Parent
+    1 -> RelType.Child
+    2 -> RelType.Sibling
+    3 -> RelType.ExtFam
+    4 -> RelType.Acquaintance
+    5 -> RelType.Friend
+    6 -> RelType.CloseFriend
+    7 -> RelType.SigOth
+    else -> TODO()
 }
 
-@Dao
-interface CompanyDao {
-    @Query("SELECT * FROM Company;")
-    fun getAll(): List<Company>
+enum class RelType {
+    Parent, Child, Sibling, ExtFam, Acquaintance, Friend, CloseFriend, SigOth;
 
-    @Query("SELECT * FROM Company WHERE leader = (:leader);")
-    fun getByLeader(leader: String): List<Company>
 
-    @Query("SELECT * FROM Company WHERE name = (:name) LIMIT 1;")
-    fun getByName(name: String): Company
 
-    @Insert
-    fun insertAll(vararg company: Company)
+    public fun toInt(): Int = when(this) {
+        Parent -> 0
+        Child -> 1
+        Sibling -> 2
+        ExtFam -> 3
+        Acquaintance -> 4
+        Friend -> 5
+        CloseFriend -> 6
+        SigOth -> 7
+    }
 }
 
-@Entity
-data class Stronghold(
-    @PrimaryKey val name: String,
-    val lat: Double,
-    val lng: Double,
-    val number: Int
-){
-    public fun pos() = LatLng(lat,lng)
-}
-
-@Dao
-interface StrongholdDao {
-    @Query("SELECT * FROM Stronghold;")
-    fun getAll(): List<Stronghold>
-
-    @Query("SELECT * FROM Stronghold WHERE name like (:name)")
-    fun getLikeName(name: String): List<Stronghold>
-
-    @Query("SELECT * FROM Stronghold WHERE name = (:name) LIMIT 1;")
-    fun getByName(name: String): Stronghold
-
-    @Insert
-    fun insertAll(vararg stronghold: Stronghold)
-}
-
-@Entity
-data class Assault(
-    @PrimaryKey val id: Int,
-    val attackWhich: String,
-    val attackWhen: Date
+data class Contact(val firstName: String, val lastName: String, val sex: Char, val married: Boolean, val rel: Int, val birthday: String, val phone: String, val lat: Double, val lng: Double, val id: Int? = null) {
+    constructor(c: Cursor) : this(
+        firstName = c.getString(c.getColumnIndex("firstName")),
+        lastName = c.getString(c.getColumnIndex("lastName")),
+        sex = c.getInt(c.getColumnIndex("sex")).toChar(),
+        married = c.getInt(c.getColumnIndex("married")) == 1,
+        rel = c.getInt(c.getColumnIndex("rel")),
+        birthday = c.getString(c.getColumnIndex("birthday")),
+        phone = c.getString(c.getColumnIndex("phone")),
+        lat = c.getDouble(c.getColumnIndex("lat")),
+        lng = c.getDouble(c.getColumnIndex("lng")),
+        id = c.getInt(c.getColumnIndex("id"))
     ) {}
 
-@Dao
-interface AssaultDao {
-    @Query("SELECT * FROM Assault;")
-    fun getAll(): List<Assault>
+    fun toCvals(): ContentValues {
+        val res = ContentValues()
+        res.put("firstName", firstName)
+        res.put("lastName", lastName)
+        res.put("sex", sex.toInt())
+        res.put("married", if (married) { 1 } else {0} )
+        res.put("rel", rel)
+        res.put("birthday", birthday)
+        res.put("phone", phone)
+        res.put("lat", lat)
+        res.put("lng", lng)
+        if(id != null) res.put("id", id)
 
-    @Query("SELECT * FROM Assault WHERE attackWhich = (:fort);")
-    fun getAttacksOnFort(fort: String): List<Assault>
+        return res
+    }
 
-    @Insert
-    fun insertAll(vararg assault: Assault)
+    override fun toString(): String {
+        return "Contact(firstName='$firstName', lastName='$lastName', sex=$sex, married=$married, rel=$rel, birthday='$birthday', phone='$phone', lat=$lat, lng=$lng, id=$id)"
+    }
+
+
 }
 
-@Entity
-data class Sortie(
-    val assault: Int,
-    val company: String,
-    val lat: Double,
-    val lng: Double
-    ) {}
 
-@Dao
-interface SortieDao {
-    @Query("SELECT * FROM Sortie;")
-    fun getAll(): List<Sortie>
+class ContactHelper(val ctx: Context) : SQLiteOpenHelper(ctx, "contacts.db", null, 1) {
+    override fun onCreate(db: SQLiteDatabase?) {
+        try {
+            db?.execSQL("CREATE TABLE Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, sex CHAR, married INTEGER, rel INTEGER, birthday TEXT, phone TEXT, lat REAL, lng REAL);")
+            Log.d("ContactHelper", "onCreate: Created DB")
+        } catch (e: Exception) {
+            Log.d("ContactHelper", "onCreate: Failed to make DB because " + e.message)
+        }
+    }
 
-    @Query("SELECT * FROM Sortie WHERE assault = (:assaultID);")
-    fun getByAssault(assaultID: Int): List<Sortie>
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        try {
+            db?.execSQL("DROP TABLE IF EXISTS Contacts;")
+            onCreate(db)
+        } catch (e: SQLException) {
+            Log.d("ContactHelper", "onCreate: Failed to upgrade DB because " + e.message)
+        }
+    }
 
-    @Insert
-    fun insertAll(vararg sorties: Sortie)
-}
+    fun getAll(): List<Contact> {
+        Log.d("ContactListFragment", "getAll")
+        onCreate(this.writableDatabase)
+        val db = readableDatabase
+        val c = db.rawQuery("SELECT * FROM Contacts;", arrayOf())
+        val res = mutableListOf<Contact>()
+        c.moveToFirst()
+        while (c.moveToNext())  {
+            val con = Contact(c)
+            Log.d("AppDB", "getAll: $con")
+            res.add(con)
+        }
 
-@Database(entities = [Company::class, Stronghold::class, Assault::class, Sortie::class], version = 1)
-abstract class AppDB : RoomDatabase() {
-    abstract fun companyDao(): CompanyDao
-    abstract fun strongholdDao(): StrongholdDao
-    abstract fun assaultDao(): AssaultDao
-    abstract fun sortieDao(): SortieDao
-}
+        return res
+    }
 
-// Singleton for AppDB
-var appDB: AppDB? = null
-public fun getAppDB(ctx: Context): AppDB {
-    if(appDB == null) appDB = Room.databaseBuilder(ctx, AppDB::class.java, "db").build()
+    fun insert(c: Contact) {
+        val db = writableDatabase
+        Log.d("AppDB", "Inserting $c")
+        db.insert("Contacts", null, c.toCvals())
+    }
 
-    return appDB as AppDB
 }
