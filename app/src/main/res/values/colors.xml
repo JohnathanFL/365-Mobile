@@ -4,4 +4,22 @@
     <color name="purple500">#6200EE</color>
     <color name="purple700">#3700B3</color>
     <color name="teal200">#03DAC5</color>
+
+    <!-- Using the Nord palette -->
+    <color name="DARK0">#2e3440</color>
+    <color name="DARK1">#3b4252</color>
+    <color name="DARK2">#434c5e</color>
+    <color name="DARK3">#4c566a</color>
+    <color name="LIGHT0">#d8dee9</color>
+    <color name="LIGHT1">#e5e9f0</color>
+    <color name="LIGHT2">#eceff4</color>
+    <color name="FROST0">#8fbcbb</color>
+    <color name="FROST1">#88c0d0</color>
+    <color name="FROST2">#81a1c1</color>
+    <color name="FROST3">#5e81ac</color>
+    <color name="AURORA0">#bf616a</color>
+    <color name="AURORA1">#d08770</color>
+    <color name="AURORA2">#ebcb8b</color>
+    <color name="AURORA3">#a3be8c</color>
+    <color name="AURORA4">#b48ead</color>
 </resources>

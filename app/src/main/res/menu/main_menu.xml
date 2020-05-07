@@ -2,18 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="@string/map"
+        android:title="@string/sphere_of_influence"
         android:id="@+id/navMap"
         android:icon="@android:drawable/ic_menu_mapmode"/>
     <item
-        android:title="@string/companies"
+        android:title="@string/contacts"
         android:id="@+id/navList"
         android:icon="@android:drawable/sym_contact_card"
-        />
-    <item
-        android:title="@string/strongholds"
-        android:id="@+id/navStronghold"
-        android:icon="@android:drawable/ic_menu_mylocation"
         />
 
 </menu>

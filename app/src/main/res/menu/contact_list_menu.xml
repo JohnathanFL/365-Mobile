@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/optSearch"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/optSortByFName"
+        android:title="@string/sort_by_first_name" />
+    <item
+        android:id="@+id/optSortByLName"
+        android:title="@string/sort_by_last_name" />
+    <item android:title="@string/filter_by_relationship">
+        <menu>
+            <item android:title="@string/parent" android:id="@+id/optParent"/>
+            <item android:title="@string/child" android:id="@+id/optChild"/>
+            <item android:title="@string/sibling" android:id="@+id/optSibling"/>
+            <item android:title="@string/extFam" android:id="@+id/optExtFam"/>
+            <item android:title="@string/acquaintance" android:id="@+id/optAcquaintance"/>
+            <item android:title="@string/friend" android:id="@+id/optFriend"/>
+            <item android:title="@string/closeFriend" android:id="@+id/optCloseFriend"/>
+            <item android:title="@string/sigOth" android:id="@+id/optSigOth"/>
+        </menu>
+    </item>
+</menu>

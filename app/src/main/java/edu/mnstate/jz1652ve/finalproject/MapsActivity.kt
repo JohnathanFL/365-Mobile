@@ -11,6 +11,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -19,27 +20,27 @@ import androidx.core.location.LocationManagerCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.android.gms.maps.*
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_loc_picker.*
 import java.util.jar.Manifest
 import kotlin.math.sqrt
 
-private const val TAG = "MapsActivity"
+const val TAG = "MapsActivity"
 private val LOC_PERM_ID = 101
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locMan: LocationManager
-    private var mMap: GoogleMap? = null
-    private lateinit var nav: NavigationView
-    private lateinit var drawer: DrawerLayout
+    public var mMap: GoogleMap? = null
+    public lateinit var nav: NavigationView
+    public lateinit var drawer: DrawerLayout
     lateinit var onChange: () -> Unit
     val dao = ContactHelper(this)
+    var desiredLoc: LatLng? = null
 
     private var curScreen: Int = R.id.navMap
 
@@ -57,11 +58,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
-
         locMan = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        setFragment(SupportMapFragment.newInstance()) { frag: SupportMapFragment ->
+        setContentView(R.layout.activity_maps)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+
+        setFragment(MapFragment()) { frag: MapFragment ->
             this.onChange = { addMarkers() }
             frag.getMapAsync(this)
         }
@@ -72,21 +75,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             if (item.itemId != this.curScreen) {
                 when (item.itemId) {
                     R.id.navMap -> {
-                        setFragment(SupportMapFragment()) { frag: SupportMapFragment ->
-                            addMarkers()
-                            frag.getMapAsync(this)
+                        setFragment(MapFragment()) {
+                            it.getMapAsync(this)
                         }
                     }
                     R.id.navList -> {
                         setFragment(ContactListFragment.newInstance()) { frag ->
                             this.onChange = { frag.notifyChanged() }
+                            frag.goToMap = { loc ->
+                                curScreen = R.id.navMap
+                                desiredLoc = loc
+                                setFragment(MapFragment()) {
+                                    it.getMapAsync(this)
+
+                                }
+                            }
                         }
                         mMap = null
-                    }
-                    R.id.navStronghold -> {
-
-                        mMap = null
-
                     }
                 }
                 this.curScreen = item.itemId
@@ -97,18 +102,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap!!.mapType = GoogleMap.MAP_TYPE_HYBRID
 
         val perm = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
         if(perm == PackageManager.PERMISSION_GRANTED)
@@ -116,9 +112,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         else
             askForgiveness(android.Manifest.permission.ACCESS_FINE_LOCATION, LOC_PERM_ID)
 
+        if(desiredLoc != null) {
+            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(desiredLoc))
+            desiredLoc = null
+        }
+
         addMarkers()
     }
-
 
 
 
@@ -165,6 +165,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             map.addMarker(MarkerOptions()
                 .position(pos)
                 .title(c.firstName + " " + c.lastName)
+                .snippet(c.phone)
             )
         }
     }
@@ -188,7 +189,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if(grantResults.size == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
                     Toast.makeText(this, "Sphere of influence disabled.", Toast.LENGTH_SHORT).show()
                 else if(mMap != null) { // i.e we're in the map fragment at the moment
-                    val mapFragment = supportFragmentManager.findFragmentById(R.id.mainFrag) as SupportMapFragment
+                    val mapFragment = supportFragmentManager.findFragmentById(R.id.mainFrag) as MapFragment
                     mapFragment.getMapAsync(this)
                 }
             }

@@ -8,12 +8,12 @@ General idea is a simple contact book app.
 - [ ] SQLite database
   - [x] Must have at LEAST 4 fields – do  not simply store login information this time!
   - [x] Add a record
-  - [ ] Delete a record
-  - [ ] 3 queries to illustrate retrieving different information from the database
+  - [x] Delete a record
+  - [x] 3 queries to illustrate retrieving different information from the database
     - Will be chosen from using the options menu
-- [ ] RecyclerView
+- [x] RecyclerView
   - [x] Display a list of items 
-  - [ ] Allow user to click on the list to see more detail about an item
+  - [x] Allow user to click on the list to see more detail about an item
 - [x] Fragments
 - [x] Navigation Drawer
 - [x] Use Google maps

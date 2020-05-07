@@ -96,13 +96,9 @@ class ContactHelper(val ctx: Context) : SQLiteOpenHelper(ctx, "contacts.db", nul
         }
     }
 
-    fun getAll(): List<Contact> {
-        Log.d("ContactListFragment", "getAll")
-        onCreate(this.writableDatabase)
-        val db = readableDatabase
-        val c = db.rawQuery("SELECT * FROM Contacts;", arrayOf())
+    private fun toList(c: Cursor): List<Contact> {
         val res = mutableListOf<Contact>()
-        c.moveToFirst()
+//        c.moveToFirst()
         while (c.moveToNext())  {
             val con = Contact(c)
             Log.d("AppDB", "getAll: $con")
@@ -112,10 +108,62 @@ class ContactHelper(val ctx: Context) : SQLiteOpenHelper(ctx, "contacts.db", nul
         return res
     }
 
+    fun getAll(): List<Contact> {
+        Log.d("AppDB", "getAll")
+        val db = readableDatabase
+        val c = db.rawQuery("SELECT * FROM Contacts;", arrayOf())
+        return toList(c)
+    }
+
+    fun getSortFName(): List<Contact> {
+        Log.d("AppDB", "getSortFName")
+        val db = readableDatabase
+        val c = db.rawQuery("SELECT * FROM Contacts ORDER BY firstName;", arrayOf())
+        return toList(c)
+    }
+
+    fun getSortLName(): List<Contact> {
+        Log.d("AppDB", "getSortFName")
+        val db = readableDatabase
+        val c = db.rawQuery("SELECT * FROM Contacts ORDER BY lastName;", arrayOf())
+        return toList(c)
+    }
+
+    fun getLike(s: String): List<Contact> {
+        Log.d("AppDB", "getLike " + s)
+        val db = readableDatabase
+        val arg = "%$s%"
+        val c = db.rawQuery("SELECT * FROM Contacts WHERE (firstname like ?) or (lastName like ?);", arrayOf(arg, arg))
+        return toList(c)
+    }
+
+    fun getByID(i: Int): Contact {
+        Log.d("AppDB", "Getting ID#" + i)
+        val db = readableDatabase
+        val c = db.rawQuery("SELECT * FROM Contacts WHERE id = $i;", arrayOf())
+//        if(!c.moveToFirst()) return null
+        return Contact(c)
+    }
+
+    fun getByRel(rel: RelType): List<Contact> {
+        Log.d("AppDB", "getByRel: $rel")
+        val db = readableDatabase
+
+        val relInt = rel.toInt()
+        val c = db.rawQuery("SELECT * FROM Contacts WHERE rel = $relInt;", arrayOf())
+        return toList(c)
+    }
+
     fun insert(c: Contact) {
         val db = writableDatabase
         Log.d("AppDB", "Inserting $c")
-        db.insert("Contacts", null, c.toCvals())
+        Log.d("AppDB", "Return: " + db.insert("Contacts", null, c.toCvals()))
+    }
+
+    fun delete(i: Int) {
+        val db = writableDatabase
+        Log.d("AppDB", "Deleting #$i")
+        db.delete("Contacts", "id = ?", arrayOf("" + i))
     }
 
 }
