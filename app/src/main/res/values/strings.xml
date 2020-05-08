@@ -59,4 +59,10 @@
     <string name="mustEnterPhone">Must enter phone number</string>
     <string name="mustEnterLast">Must enter last name</string>
     <string name="mustEnterFirst">Must enter first name</string>
+    <string name="placeholderHon">MR</string>
+    <string name="placeholderFName">FIRSTNAME</string>
+    <string name="placeholderLName">LASTNAME</string>
+    <string name="placeholderBDay">BDAY</string>
+    <string name="placeholderRel">REL</string>
+    <string name="born_on">born on</string>
 </resources>

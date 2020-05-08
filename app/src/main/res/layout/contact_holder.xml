@@ -1,100 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:app1="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+
+    <ImageButton
+        android:id="@+id/delItemBtn"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/delItemBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app1:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
-        <ImageButton
-            android:id="@+id/showMapBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app1:srcCompat="@android:drawable/ic_dialog_map" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rest"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:foregroundTintMode="src_over"
+        app1:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/showMapBtn"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundTintMode="src_over"
+        app1:srcCompat="@android:drawable/ic_dialog_map"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delItemBtn"
+        />
 
-            <TextView
-                android:id="@+id/honorific"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/quart"
-                android:text="" />
 
-            <TextView
-                android:id="@+id/firstName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/quart"
-                android:text=""
-                app1:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id="@+id/honorific"
+        style="@android:style/TextAppearance.Material.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quart"
+        android:text="@string/placeholderHon"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/delItemBtn"
+        app:layout_constraintEnd_toStartOf="@+id/firstName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/delItemBtn"
+        app:layout_constraintTop_toTopOf="@+id/delItemBtn" />
 
-            <TextView
-                android:id="@+id/lastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/quart"
-                android:text="" />
+    <TextView
+        android:id="@+id/firstName"
+        style="@android:style/TextAppearance.Material.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quart"
+        android:text="@string/placeholderFName"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/honorific"
+        app:layout_constraintEnd_toStartOf="@+id/lastName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/honorific" />
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/word"
-            android:layout_marginTop="@dimen/quart"
-            android:layout_marginBottom="@dimen/quart"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/lastName"
+        style="@android:style/TextAppearance.Material.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quart"
+        android:text="@string/placeholderLName"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/firstName"
+        app:layout_constraintStart_toEndOf="@+id/firstName" />
 
-            <TextView
-                android:id="@+id/relation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/quart"
-                android:layout_marginEnd="@dimen/quart"
-                android:text="" />
+    <TextView
+        android:id="@+id/birthday"
+        style="@android:style/TextAppearance.Material.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quart"
+        android:text="@string/placeholderBDay"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
 
-            <TextView
-                android:id="@+id/birthday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
+    <TextView
+        android:id="@+id/relation"
+        style="@android:style/TextAppearance.Material.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quart"
+        android:text="@string/placeholderRel"
+        app:layout_constraintBottom_toBottomOf="@+id/showMapBtn"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/showMapBtn"
+        app:layout_constraintTop_toBottomOf="@+id/delItemBtn" />
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textView2"
+        style="@android:style/TextAppearance.Material.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quart"
+        android:text="@string/born_on"
+        app:layout_constraintBaseline_toBaselineOf="@+id/relation"
+        app:layout_constraintEnd_toStartOf="@+id/birthday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/relation" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="@dimen/nil"
+        android:layout_height="wrap_content"
+        android:background="@color/AURORA0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showMapBtn" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
