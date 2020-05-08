@@ -72,15 +72,18 @@
         <DatePicker
             android:id="@+id/bdayPicker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/DARK1"
+            android:calendarTextColor="@color/AURORA0" />
 
 
         <SeekBar
             android:id="@+id/yearSeek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="11"
-            android:progress="6" />
+            android:max="21"
+            android:padding="@dimen/half"
+            android:progress="11" />
 
         <LinearLayout
             android:layout_width="match_parent"

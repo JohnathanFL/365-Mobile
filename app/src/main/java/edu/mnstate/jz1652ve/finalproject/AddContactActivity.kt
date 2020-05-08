@@ -67,7 +67,7 @@ class AddContactActivity : Activity() {
         }
 
         yearBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            var lastState: Int = 6
+            var lastState: Int = 11
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (!fromUser) return;
                 val delta = progress - lastState
@@ -78,8 +78,8 @@ class AddContactActivity : Activity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                lastState = 6
-                yearBar.progress = 6
+                lastState = 11
+                yearBar.progress = 11
             }
 
         })
