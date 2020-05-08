@@ -4,12 +4,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageButton
+import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.contact_holder.view.*
+import kotlinx.android.synthetic.main.contact_holder.view.firstName
+import kotlinx.android.synthetic.main.contact_holder.view.honorific
+import kotlinx.android.synthetic.main.contact_holder.view.lastName
+import kotlinx.android.synthetic.main.full_contact_holder.view.*
 
 class ContactListFragment : Fragment() {
 
@@ -143,14 +151,14 @@ class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>)
     RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
     val context = frag.context!!
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val honorific: TextView = itemView.findViewById(R.id.honorific)
-        val firstName: TextView = itemView.findViewById(R.id.firstName)
-        val lastName: TextView = itemView.findViewById(R.id.lastName)
-        val rel: TextView = itemView.findViewById(R.id.relation)
-        val birthday: TextView = itemView.findViewById(R.id.birthday)
-        val delItemBtn: ImageButton = itemView.findViewById(R.id.delItemBtn)
-        val goMapBtn: ImageButton = itemView.findViewById(R.id.showMapBtn)
+    inner class ViewHolder(val root: View) : RecyclerView.ViewHolder(root) {
+        val honorific: TextView = root.findViewById(R.id.honorific)
+        val firstName: TextView = root.findViewById(R.id.firstName)
+        val lastName: TextView = root.findViewById(R.id.lastName)
+        val rel: TextView = root.findViewById(R.id.relation)
+        val birthday: TextView = root.findViewById(R.id.birthday)
+        val delItemBtn: ImageButton = root.findViewById(R.id.delItemBtn)
+        val goMapBtn: ImageButton = root.findViewById(R.id.showMapBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapter.ViewHolder {
@@ -165,22 +173,10 @@ class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>)
 
     override fun getItemCount(): Int = contacts.size
 
-    override fun onBindViewHolder(holder: ContactAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = contacts[position]
-        holder.honorific.text = when (contact.sex) {
-            'M' -> context.getString(R.string.maleHonorific)
-            'F' -> if (contact.married) {
-                context.getString(R.string.femMarried)
-            } else {
-                context.getString(
-                    R.string.femUnmarried
-                )
-            }
-            else -> TODO()
-        }
-        holder.firstName.text = contact.firstName
-        holder.lastName.text = contact.lastName
-        holder.rel.text = when (relFromInt(contact.rel)) {
+
+        fun getRel(i: Int): String = when (relFromInt(contact.rel)) {
             RelType.Parent -> context.getString(R.string.parent)
             RelType.Child -> context.getString(R.string.child)
             RelType.Sibling -> context.getString(R.string.sibling)
@@ -190,6 +186,33 @@ class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>)
             RelType.CloseFriend -> context.getString(R.string.closeFriend)
             RelType.SigOth -> context.getString(R.string.sigOth)
         }
+
+        holder.root.setOnClickListener {
+            val view =
+                frag.layoutInflater.inflate(R.layout.full_contact_holder, frag.recycler, false)!!
+
+
+            view.background = context.getDrawable(R.color.DARK0)
+            view.honorific.text = contact.honorific(context)
+            view.firstName.text = contact.firstName
+            view.lastName.text = contact.lastName
+            view.phoneNumber.text = contact.phone
+            view.rel.text = getRel(contact.rel)
+            view.bday.text = contact.birthday
+            view.lat.text = contact.lat.toString()
+            view.lng.text = contact.lng.toString()
+
+            AlertDialog.Builder(frag.context!!)
+                .setCancelable(true)
+                .setView(view)
+                .show()
+        }
+
+
+        holder.honorific.text = contact.honorific(context)
+        holder.firstName.text = contact.firstName
+        holder.lastName.text = contact.lastName
+        holder.rel.text = getRel(contact.rel)
 
         holder.birthday.text = contact.birthday
 

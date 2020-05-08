@@ -65,4 +65,6 @@
     <string name="placeholderBDay">BDAY</string>
     <string name="placeholderRel">REL</string>
     <string name="born_on">born on</string>
+    <string name="your">Your</string>
+    <string name="lives_at">Lives at</string>
 </resources>

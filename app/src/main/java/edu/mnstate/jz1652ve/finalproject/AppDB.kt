@@ -84,6 +84,17 @@ data class Contact(
         return res
     }
 
+    public fun honorific(context: Context) = when (this.sex) {
+        'M' -> context.getString(R.string.maleHonorific)
+        'F' ->
+            if (this.married)
+                context.getString(R.string.femMarried)
+            else
+                context.getString(R.string.femUnmarried)
+
+        else -> TODO("Unreachable")
+    }
+
     override fun toString(): String {
         return "Contact(firstName='$firstName', lastName='$lastName', sex=$sex, married=$married, rel=$rel, birthday='$birthday', phone='$phone', lat=$lat, lng=$lng, id=$id)"
     }
