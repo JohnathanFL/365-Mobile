@@ -5,7 +5,7 @@ General idea is a simple contact book app.
 ## High Level Overview
 
 ## Requirements and Fulfillments
-- [ ] SQLite database
+- [x] SQLite database
   - [x] Must have at LEAST 4 fields – do  not simply store login information this time!
   - [x] Add a record
   - [x] Delete a record
@@ -27,12 +27,12 @@ General idea is a simple contact book app.
   - [x] Seekbar – do not simply use this to rate the app!
   - [x] Spinner
 - [ ] Action bar 
-- [ ] Options menu
-- [ ] Use Styles and a different Theme
+- [x] Options menu
+- [x] Use Styles and a different Theme
 - [x] At least one other feature not covered in class
   - Kotlin
-- [ ] Consume data from a web service using Retrofit - must use a previously unused API
-  - Using genderize.io
+- [x] Consume data from a web service using Retrofit - must use a previously unused API
+  - Using genderize.io to predict the gender of the new contact
 
 
 ## SQLite Layout
