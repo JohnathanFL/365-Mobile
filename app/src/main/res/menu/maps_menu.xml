@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/optSat"
-        android:title="Satellite"
+        android:title="@string/satellite"
         app:showAsAction="never" />
     <item
         android:id="@+id/optTerr"
-        android:title="Terrain"
+        android:title="@string/terrain"
         app:showAsAction="never" />
     <item
         android:id="@+id/optHybrid"
-        android:title="Hybrid"
+        android:title="@string/hybrid"
         app:showAsAction="never" />
 </menu>

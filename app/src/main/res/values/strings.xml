@@ -39,4 +39,19 @@
     <string name="sort_by_first_name">Sort By First Name</string>
     <string name="search">Search</string>
     <string name="searching">\"Searching: \"</string>
+    <string name="satellite">Satellite</string>
+    <string name="terrain">Terrain</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="married">Married?</string>
+    <string name="lattitude">Lattitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="must_select_gender">Must select a gender.</string>
+    <string name="femMarried">Mrs.</string>
+    <string name="femUnmarried">Ms.</string>
+    <string name="maleHonorific">Mr.</string>
+    <string name="sphereDisabled">Sphere of influence disabled.</string>
 </resources>

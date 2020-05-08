@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="First Name"
+            android:hint="@string/first_name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Last Name"
+            android:hint="@string/last_name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -48,20 +48,20 @@
                 android:id="@+id/maleRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Man" />
+                android:text="@string/man" />
 
             <RadioButton
                 android:id="@+id/femRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Woman" />
+                android:text="@string/woman" />
         </RadioGroup>
 
         <CheckBox
             android:id="@+id/marriedCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Married?" />
+            android:text="@string/married" />
 
         <Spinner
             android:id="@+id/relTypeSpinner"
@@ -91,7 +91,7 @@
                 android:id="@+id/locPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="@dimen/half"
                 android:layout_weight="1"
                 android:background="@color/FROST0"
                 android:src="@android:drawable/ic_dialog_map" />
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Lattitude"
+                android:hint="@string/lattitude"
                 android:inputType="numberSigned" />
 
             <EditText
@@ -111,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/longitude"
                 android:inputType="numberSigned" />
         </LinearLayout>
 
@@ -118,7 +119,7 @@
             android:id="@+id/addBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="@dimen/dword"
             android:background="@color/FROST0"
             android:src="?android:attr/textCheckMarkInverse" />
 

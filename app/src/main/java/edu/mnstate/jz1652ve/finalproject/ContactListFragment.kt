@@ -169,11 +169,11 @@ class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>)
     override fun getItemCount(): Int = contacts.size
 
     override fun onBindViewHolder(holder: ContactAdapter.ViewHolder, position: Int) {
-        Log.d("ContactListFragment", "onBindViewHolder: BOUND")
         val contact = contacts[position]
         holder.honorific.text = when(contact.sex) {
-            'M' -> "Mr."
-            'F' -> if (contact.married) { "Mrs." } else { "Ms." }
+            'M' -> context.getString(R.string.maleHonorific)
+            'F' -> if (contact.married) { context.getString(R.string.femMarried) } else { context.getString(
+                            R.string.femUnmarried) }
             else -> TODO()
         }
         holder.firstName.text = contact.firstName

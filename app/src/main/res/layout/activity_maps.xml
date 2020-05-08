@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="4dp"
+            android:elevation="@dimen/toolbarElevation"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             map:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +26,8 @@
 
         <FrameLayout
             android:id="@+id/mainFrag"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/nil"
+            android:layout_height="@dimen/nil"
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintLeft_toLeftOf="parent"
             map:layout_constraintRight_toRightOf="parent"
@@ -36,7 +36,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/half"
             android:backgroundTint="@color/FROST0"
             android:backgroundTintMode="src_over"
             android:onClick="onAddBtn"

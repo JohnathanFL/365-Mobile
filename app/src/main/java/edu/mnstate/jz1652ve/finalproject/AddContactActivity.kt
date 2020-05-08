@@ -117,7 +117,7 @@ class AddContactActivity : Activity() {
                 R.id.maleRadio -> 'M'
                 R.id.femRadio -> 'F'
                 else -> {
-                    Toast.makeText(this, "Must select a gender.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.must_select_gender), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
             }

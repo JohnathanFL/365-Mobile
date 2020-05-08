@@ -187,7 +187,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         when(requestCode) {
             LOC_PERM_ID -> {
                 if(grantResults.size == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-                    Toast.makeText(this, "Sphere of influence disabled.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.sphereDisabled), Toast.LENGTH_SHORT).show()
                 else if(mMap != null) { // i.e we're in the map fragment at the moment
                     val mapFragment = supportFragmentManager.findFragmentById(R.id.mainFrag) as MapFragment
                     mapFragment.getMapAsync(this)
