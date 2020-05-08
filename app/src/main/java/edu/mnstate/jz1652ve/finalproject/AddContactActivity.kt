@@ -36,8 +36,8 @@ class AddContactActivity : Activity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        latField.setText("" + data!!.getDoubleExtra("lat", 45.0))
-        lngField.setText("" + data!!.getDoubleExtra("lng", 45.0))
+        latField.setText(data!!.getDoubleExtra("lat", 45.0).toString())
+        lngField.setText(data!!.getDoubleExtra("lng", 45.0).toString())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +117,8 @@ class AddContactActivity : Activity() {
                 R.id.maleRadio -> 'M'
                 R.id.femRadio -> 'F'
                 else -> {
-                    Toast.makeText(this, getString(R.string.must_select_gender), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.must_select_gender), Toast.LENGTH_SHORT)
+                        .show()
                     return@setOnClickListener
                 }
             }

@@ -92,7 +92,7 @@ class ContactListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected: Change sort")
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.optSortByFName -> {
                 getData = { dao.getSortFName() }
 //                activity!!.actionBar!!.setTitle(R.string.sort_by_first_name)
@@ -133,7 +133,8 @@ class ContactListFragment : Fragment() {
 //                activity!!.actionBar!!.setTitle(R.string.friend)
                 notifyChanged()
             }
-            R.id.optCloseFriend -> {    getData = { dao.getByRel(RelType.CloseFriend) }
+            R.id.optCloseFriend -> {
+                getData = { dao.getByRel(RelType.CloseFriend) }
 //                activity!!.actionBar!!.setTitle(R.string.closeFriend)
                 notifyChanged()
             }
@@ -149,7 +150,8 @@ class ContactListFragment : Fragment() {
     }
 }
 
-class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>) : RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
+class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>) :
+    RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
     val context = frag.context!!
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -163,22 +165,33 @@ class ContactAdapter(val frag: ContactListFragment, var contacts: List<Contact>)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.contact_holder, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.contact_holder,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = contacts.size
 
     override fun onBindViewHolder(holder: ContactAdapter.ViewHolder, position: Int) {
         val contact = contacts[position]
-        holder.honorific.text = when(contact.sex) {
+        holder.honorific.text = when (contact.sex) {
             'M' -> context.getString(R.string.maleHonorific)
-            'F' -> if (contact.married) { context.getString(R.string.femMarried) } else { context.getString(
-                            R.string.femUnmarried) }
+            'F' -> if (contact.married) {
+                context.getString(R.string.femMarried)
+            } else {
+                context.getString(
+                    R.string.femUnmarried
+                )
+            }
             else -> TODO()
         }
         holder.firstName.text = contact.firstName
         holder.lastName.text = contact.lastName
-        holder.rel.text = when(relFromInt(contact.rel)) {
+        holder.rel.text = when (relFromInt(contact.rel)) {
             RelType.Parent -> context.getString(R.string.parent)
             RelType.Child -> context.getString(R.string.child)
             RelType.Sibling -> context.getString(R.string.sibling)

@@ -10,7 +10,7 @@ import android.widget.Toast
 import java.lang.Exception
 import java.sql.SQLException
 
-public fun relFromInt(i: Int): RelType = when(i) {
+public fun relFromInt(i: Int): RelType = when (i) {
     0 -> RelType.Parent
     1 -> RelType.Child
     2 -> RelType.Sibling
@@ -26,8 +26,7 @@ enum class RelType {
     Parent, Child, Sibling, ExtFam, Acquaintance, Friend, CloseFriend, SigOth;
 
 
-
-    public fun toInt(): Int = when(this) {
+    public fun toInt(): Int = when (this) {
         Parent -> 0
         Child -> 1
         Sibling -> 2
@@ -39,7 +38,18 @@ enum class RelType {
     }
 }
 
-data class Contact(val firstName: String, val lastName: String, val sex: Char, val married: Boolean, val rel: Int, val birthday: String, val phone: String, val lat: Double, val lng: Double, val id: Int? = null) {
+data class Contact(
+    val firstName: String,
+    val lastName: String,
+    val sex: Char,
+    val married: Boolean,
+    val rel: Int,
+    val birthday: String,
+    val phone: String,
+    val lat: Double,
+    val lng: Double,
+    val id: Int? = null
+) {
     constructor(c: Cursor) : this(
         firstName = c.getString(c.getColumnIndex("firstName")),
         lastName = c.getString(c.getColumnIndex("lastName")),
@@ -51,20 +61,27 @@ data class Contact(val firstName: String, val lastName: String, val sex: Char, v
         lat = c.getDouble(c.getColumnIndex("lat")),
         lng = c.getDouble(c.getColumnIndex("lng")),
         id = c.getInt(c.getColumnIndex("id"))
-    ) {}
+    ) {
+    }
 
     fun toCvals(): ContentValues {
         val res = ContentValues()
         res.put("firstName", firstName)
         res.put("lastName", lastName)
         res.put("sex", sex.toInt())
-        res.put("married", if (married) { 1 } else {0} )
+        res.put(
+            "married", if (married) {
+                1
+            } else {
+                0
+            }
+        )
         res.put("rel", rel)
         res.put("birthday", birthday)
         res.put("phone", phone)
         res.put("lat", lat)
         res.put("lng", lng)
-        if(id != null) res.put("id", id)
+        if (id != null) res.put("id", id)
 
         return res
     }
@@ -99,7 +116,7 @@ class ContactHelper(val ctx: Context) : SQLiteOpenHelper(ctx, "contacts.db", nul
     private fun toList(c: Cursor): List<Contact> {
         val res = mutableListOf<Contact>()
 //        c.moveToFirst()
-        while (c.moveToNext())  {
+        while (c.moveToNext()) {
             val con = Contact(c)
             Log.d("AppDB", "getAll: $con")
             res.add(con)
@@ -133,7 +150,10 @@ class ContactHelper(val ctx: Context) : SQLiteOpenHelper(ctx, "contacts.db", nul
         Log.d("AppDB", "getLike " + s)
         val db = readableDatabase
         val arg = "%$s%"
-        val c = db.rawQuery("SELECT * FROM Contacts WHERE (firstname like ?) or (lastName like ?);", arrayOf(arg, arg))
+        val c = db.rawQuery(
+            "SELECT * FROM Contacts WHERE (firstname like ?) or (lastName like ?);",
+            arrayOf(arg, arg)
+        )
         return toList(c)
     }
 

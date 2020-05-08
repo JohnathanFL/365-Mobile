@@ -8,7 +8,7 @@ import com.google.android.gms.maps.SupportMapFragment
 
 class MapFragment : SupportMapFragment() {
     override fun onCreateView(p0: LayoutInflater, p1: ViewGroup?, p2: Bundle?): View? {
-        val res =  super.onCreateView(p0, p1, p2)
+        val res = super.onCreateView(p0, p1, p2)
         setHasOptionsMenu(true)
         return res
     }

@@ -33,6 +33,7 @@ import kotlin.math.sqrt
 
 const val TAG = "MapsActivity"
 private val LOC_PERM_ID = 101
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locMan: LocationManager
     public var mMap: GoogleMap? = null
@@ -48,7 +49,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * Lets us commit a fragment async while also doing something when it's ready
      * without extra cruft
      */
-    private fun <F: Fragment> setFragment(f: F, then: (F) -> Unit = {}) = supportFragmentManager
+    private fun <F : Fragment> setFragment(f: F, then: (F) -> Unit = {}) = supportFragmentManager
         .beginTransaction()
         .replace(R.id.mainFrag, f as Fragment)
         .runOnCommit {
@@ -106,13 +107,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         mMap!!.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-        val perm = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-        if(perm == PackageManager.PERMISSION_GRANTED)
+        val perm = ContextCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        if (perm == PackageManager.PERMISSION_GRANTED)
             mMap!!.isMyLocationEnabled = true
         else
             askForgiveness(android.Manifest.permission.ACCESS_FINE_LOCATION, LOC_PERM_ID)
 
-        if(desiredLoc != null) {
+        if (desiredLoc != null) {
             mMap!!.moveCamera(CameraUpdateFactory.newLatLng(desiredLoc))
             desiredLoc = null
         }
@@ -121,33 +125,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-
-
     @SuppressLint("MissingPermission")
     fun addMarkers() {
-        if(mMap == null) return
+        if (mMap == null) return
         val map = mMap!!
 
         map.clear()
 
         val allContacts = dao.getAll()
-        if(map.isMyLocationEnabled)
+        if (map.isMyLocationEnabled)
             locMan.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, object : LocationListener {
                 override fun onLocationChanged(location: Location?) {
                     val otherLoc = Location(location)
                     var furthest = 0.0f
-                    for(c in allContacts) {
+                    for (c in allContacts) {
                         otherLoc.latitude = c.lat
                         otherLoc.longitude = c.lng
                         val d = location!!.distanceTo(otherLoc)
-                        if(d > furthest) furthest = d
+                        if (d > furthest) furthest = d
                     }
 
-                    map.addCircle(CircleOptions()
-                        .center(LatLng(location!!.latitude, location!!.longitude))
-                        .radius(furthest.toDouble())
-                        .strokeColor(Color.BLUE)
-                        .fillColor(Color.argb(20, 0, 0, 255))
+                    map.addCircle(
+                        CircleOptions()
+                            .center(LatLng(location!!.latitude, location!!.longitude))
+                            .radius(furthest.toDouble())
+                            .strokeColor(Color.BLUE)
+                            .fillColor(Color.argb(20, 0, 0, 255))
                     )
                 }
 
@@ -160,18 +163,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-        for(c in allContacts) {
+        for (c in allContacts) {
             val pos = LatLng(c.lat, c.lng)
-            map.addMarker(MarkerOptions()
-                .position(pos)
-                .title(c.firstName + " " + c.lastName)
-                .snippet(c.phone)
+            map.addMarker(
+                MarkerOptions()
+                    .position(pos)
+                    .title(c.firstName + " " + c.lastName)
+                    .snippet(c.phone)
             )
         }
     }
 
     fun onAddBtn(view: View) {
-        var goAddItBoy = Intent(this,  AddContactActivity::class.java)
+        var goAddItBoy = Intent(this, AddContactActivity::class.java)
         this.startActivityForResult(goAddItBoy, 0)
     }
 
@@ -184,12 +188,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode) {
+        when (requestCode) {
             LOC_PERM_ID -> {
-                if(grantResults.size == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-                    Toast.makeText(this, getString(R.string.sphereDisabled), Toast.LENGTH_SHORT).show()
-                else if(mMap != null) { // i.e we're in the map fragment at the moment
-                    val mapFragment = supportFragmentManager.findFragmentById(R.id.mainFrag) as MapFragment
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED)
+                    Toast.makeText(
+                        this,
+                        getString(R.string.sphereDisabled),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                else if (mMap != null) { // i.e we're in the map fragment at the moment
+                    val mapFragment =
+                        supportFragmentManager.findFragmentById(R.id.mainFrag) as MapFragment
                     mapFragment.getMapAsync(this)
                 }
             }
