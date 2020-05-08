@@ -54,4 +54,9 @@
     <string name="femUnmarried">Ms.</string>
     <string name="maleHonorific">Mr.</string>
     <string name="sphereDisabled">Sphere of influence disabled.</string>
+    <string name="must_select_loc">Must select a location.</string>
+    <string name="validPhone">A valid phone number must have at least 10 digits.</string>
+    <string name="mustEnterPhone">Must enter phone number</string>
+    <string name="mustEnterLast">Must enter last name</string>
+    <string name="mustEnterFirst">Must enter first name</string>
 </resources>

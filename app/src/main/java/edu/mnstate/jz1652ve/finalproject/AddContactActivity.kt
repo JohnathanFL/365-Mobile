@@ -1,15 +1,18 @@
 package edu.mnstate.jz1652ve.finalproject
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class AddContactActivity : Activity() {
     lateinit var firstName: EditText
@@ -35,7 +38,7 @@ class AddContactActivity : Activity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         latField.setText(data!!.getDoubleExtra("lat", 45.0).toString())
-        lngField.setText(data!!.getDoubleExtra("lng", 45.0).toString())
+        lngField.setText(data.getDoubleExtra("lng", 45.0).toString())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,8 +64,6 @@ class AddContactActivity : Activity() {
             val getMeMyLoc = Intent(this, LocPickerActivity::class.java)
             startActivityForResult(getMeMyLoc, 0)
         }
-
-        // bday.maxDate TODO
 
         yearBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             var lastState: Int = 6
@@ -110,15 +111,50 @@ class AddContactActivity : Activity() {
         }
 
         addBtn.setOnClickListener {
-            if (latField.text.isBlank() || lngField.text.isBlank()) return@setOnClickListener
+
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+            if (firstName.text.isBlank()) {
+                Toast.makeText(this, getString(R.string.mustEnterFirst), Toast.LENGTH_LONG).show()
+                firstName.requestFocus()
+                imm.showSoftInput(firstName, InputMethodManager.SHOW_IMPLICIT);
+                return@setOnClickListener
+            } else if (lastName.text.isBlank()) {
+                Toast.makeText(this, getString(R.string.mustEnterLast), Toast.LENGTH_LONG).show()
+                lastName.requestFocus()
+                imm.showSoftInput(lastName, InputMethodManager.SHOW_IMPLICIT);
+                return@setOnClickListener
+            } else if (phone.text.isBlank()) {
+                Toast.makeText(this, getString(R.string.mustEnterPhone), Toast.LENGTH_LONG).show()
+                phone.requestFocus()
+                imm.showSoftInput(phone, InputMethodManager.SHOW_IMPLICIT);
+                return@setOnClickListener
+            } else if (!phone.text.matches(Regex("""(\+?\d{1,2})?(\s*|-?)\d{3}(\s*|-?)\d{3}(\s*|-?)\d{4}"""))) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.validPhone),
+                    Toast.LENGTH_LONG
+                ).show()
+                phone.requestFocus()
+                imm.showSoftInput(phone, InputMethodManager.SHOW_IMPLICIT);
+                return@setOnClickListener
+            }
+
+
             val sex = when (genderGroup.checkedRadioButtonId) {
                 R.id.maleRadio -> 'M'
                 R.id.femRadio -> 'F'
-                else -> {
-                    Toast.makeText(this, getString(R.string.must_select_gender), Toast.LENGTH_SHORT)
+                else -> { // Must be unselected
+                    Toast.makeText(this, getString(R.string.must_select_gender), Toast.LENGTH_LONG)
                         .show()
                     return@setOnClickListener
                 }
+            }
+
+            if (latField.text.isBlank() || lngField.text.isBlank()) {
+                Toast.makeText(this, getString(R.string.must_select_loc), Toast.LENGTH_LONG).show()
+                locPickBtn.performClick()
+                return@setOnClickListener
             }
 
             val lat = latField.text.toString().toDoubleOrNull() ?: 45.0
