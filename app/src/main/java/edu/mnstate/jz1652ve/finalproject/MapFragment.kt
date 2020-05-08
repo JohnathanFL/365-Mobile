@@ -2,7 +2,6 @@ package edu.mnstate.jz1652ve.finalproject
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 

@@ -3,8 +3,6 @@ package edu.mnstate.jz1652ve.finalproject
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.widget.*
 import retrofit2.Call

@@ -6,8 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import android.widget.Toast
-import java.lang.Exception
 import java.sql.SQLException
 
 public fun relFromInt(i: Int): RelType = when (i) {

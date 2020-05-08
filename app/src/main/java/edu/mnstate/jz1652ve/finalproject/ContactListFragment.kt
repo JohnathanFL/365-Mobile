@@ -1,26 +1,15 @@
 package edu.mnstate.jz1652ve.finalproject
 
-import android.app.Application
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.ImageButton
-import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.android.synthetic.main.contact_holder.view.*
-import java.util.*
-import kotlin.concurrent.thread
 
 class ContactListFragment : Fragment() {
 
