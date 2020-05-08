@@ -27,8 +27,13 @@ class LocPickerActivity : AppCompatActivity(), OnMapReadyCallback {
             val res = Intent()
             res.putExtra("lat", it.latitude)
             res.putExtra("lng", it.longitude)
-            setResult(0, res)
+            setResult(1, res)
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        setResult(0)
+        finish()
     }
 }

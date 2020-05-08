@@ -37,6 +37,7 @@ class AddContactActivity : Activity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != 1) return
         latField.setText(data!!.getDoubleExtra("lat", 45.0).toString())
         lngField.setText(data.getDoubleExtra("lng", 45.0).toString())
     }
