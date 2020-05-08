@@ -26,7 +26,7 @@ General idea is a simple contact book app.
   - [x] Date picker
   - [x] Seekbar – do not simply use this to rate the app!
   - [x] Spinner
-- [ ] Action bar 
+- [x] Action bar 
 - [x] Options menu
 - [x] Use Styles and a different Theme
 - [x] At least one other feature not covered in class
