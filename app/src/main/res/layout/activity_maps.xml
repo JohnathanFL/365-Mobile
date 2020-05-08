@@ -40,7 +40,7 @@
             android:backgroundTint="@color/FROST0"
             android:backgroundTintMode="src_over"
             android:onClick="onAddBtn"
-            android:src="@android:drawable/ic_menu_add"
+            android:src="@android:drawable/ic_menu_edit"
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintRight_toRightOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
